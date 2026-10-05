@@ -12,7 +12,18 @@
 
 - **开工**：读取 `MEMORY.md`，恢复上次进度与用户偏好；
 - **技能匹配**：读取 `SKILLS.md`，按任务关键词选择对应技能主文件；
-- **收工**：把本次进度（时间 / 任务 / 产出 / 决策 / 下一步）追加写回 `MEMORY.md`。
+- **收工**：把本次进度（时间 / 任务 / 产出 / 决策 / 下一步）追加为一行：
+  - 有写权限时（装载指令附带仓库 token）：clone 仓库 → 追加到 `MEMORY.md` → `git push`；
+  - 无写权限时：写入沙箱工作区文件 `MEMORY_UPDATE.md`，等待同步脚本回收。
+
+## 工具链协议（沙箱内，按需）
+
+```bash
+bash scripts/setup.sh    # clone + pip install + 自检，约 30 秒
+```
+
+详见 `BOOTSTRAP.md`。安装后使用绝对路径调用脚本：
+`python /home/user/ha-ha/scripts/auto_analyze.py <sample> --out ./analysis/`
 
 ## 资源索引
 
