@@ -26,3 +26,7 @@ inject-and-visit.mjs
 agent-chat.mjs
 start-agent.mjs
 sync-memory.mjs
+
+# local utility scripts (not part of skill pack)
+scan-leaks.mjs
+redact-doc.mjs
