@@ -1,0 +1,21 @@
+# 换行符规范：仓库统一存 LF，避免 Windows checkout 后的 CRLF 破坏 shell 脚本
+* text=auto eol=lf
+
+# 脚本类强制 LF（bash 语法对 CRLF 敏感：then\r / do\r 会被解析成错误）
+*.sh text eol=lf
+*.bash text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# 二进制与特殊格式不做换行转换
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.riv binary
+*.pyc binary
