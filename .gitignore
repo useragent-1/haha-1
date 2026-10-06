@@ -10,3 +10,19 @@ tmp*.bin.yar
 *.yar
 debugger_*.py
 result.txt
+
+# ---- 凭据 / 会话数据（严禁入库）----
+*cookies*.json
+*-aes-key.txt
+*.db
+sse-dump.txt
+captcha_token.txt
+
+# ---- 本地自动化脚本与中间产物 ----
+arena-recon/
+cdp-*.mjs
+hook-sse*.mjs
+inject-and-visit.mjs
+agent-chat.mjs
+start-agent.mjs
+sync-memory.mjs

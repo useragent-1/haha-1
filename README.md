@@ -13,6 +13,14 @@
 
 `reverse-flow` 是为 Claude Code / Codex CLI 设计的全谱系逆向工程技能包。
 
+## 平台知识库（docs/）
+
+| 文件 | 内容 |
+|---|---|
+| `docs/ARENA-PLATFORM-ARCHITECTURE.md` | **Arena 平台完整架构实证**：路由协议（create-chat / modelId / harnessId）、SSE 事件类型全集（16 种）、模型目录结构、模型指定实验（403 实证）、服务端测绘（Cloudflare / Vercel / Trigger.dev / Supabase / E2B）、沙箱四层架构、工作区同步协议、端点探测表、子域验证 |
+| `docs/SANDBOX-RECON-MATRIX.md` | **沙箱侦察命令矩阵**：10 阶段可复用流程（身份/环境变量/网络/进程/服务指纹/代理证书/工作区协议/权限边界/报告/记忆写回）+ 通用判读表 |
+| `references/arena/model-catalog.json` | 模型目录快照（332 个模型：UUID / provider 通道 / 能力 / 排名 / 分组） |
+
 ## 启动
 
 启动词：**真心为你**
