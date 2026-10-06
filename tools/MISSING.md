@@ -3,6 +3,12 @@
 > 生成时间：2026-10-06 ｜ 对应安装脚本：`tools/setup_full.sh`
 > 统计：**可用 148 ｜ 失败 1（已用替代方案）｜ 仅记录 4 ｜ 跳过 8 类**
 
+> **2026-10-06 更新**：第二批补装已写入 `setup_full.sh` 并覆盖上表缺口，共 9 项——
+> GoPhish（钓鱼演练）、swaks/mailutils（邮件）、sigma-cli（威胁狩猎）、
+> EvilClippy/ScareCrow（载荷生成）、CUpp（社工字典）、GTFOBins/LOLBAS/HackTricks（渗透知识库）。
+> 这批**待沙箱验证**（跑一次 `bash tools/setup_full.sh` 即生效）。
+> 另：SigmaHQ / PayloadsAllTheThings / SecLists 三个大库改为**可选安装**（`SETUP_BIGRULES=1`），默认跳过。
+
 本文件回答"哪些没装上、为什么、有什么替代、什么时候值得装"。已安装的全部见 `TOOLS.md`。
 
 ---
@@ -13,7 +19,7 @@
 |---|---|---|---|---|
 | **metasploit-framework** | 1-2 GB | 每次新建沙箱都要重新下载 1-2GB，轮次成本过高 | `pocsuite3`（Python POC 框架，已装）+ `searchsploit` + 工具手工组合，覆盖约 80% 场景 | 有持久环境（自建 VPS / 本机）时；或平台提高额度时 |
 | **ghidra / ghidra-headless** | 1-2 GB（含 JDK） | 同上；且 GUI 版在沙箱无意义 | `radare2` + `angr`（符号执行）+ `capa`（能力分析）+ `r2pipe`/`lief` 组合 | 同上 |
-| **SecLists**（大型安全词表） | >1 GB | 体积过大，多数场景不需要全量 | `crunch`（自造词表）+ `cewl`（爬取）+ `wordlists/rockyou`（**已补装**） | 需要大规模目录爆破且内存/时间允许时 |
+| **SecLists**（大型安全词表） | >1 GB | 体积过大，多数场景不需要全量 | `crunch`（自造词表）+ `cewl`（爬取）+ `wordlists/rockyou`（**已补装**） | 已改为**可选安装**：`SETUP_BIGRULES=1 bash tools/setup_full.sh` |
 
 > **注**：`wordlists`（rockyou.txt，约 130MB）已从 B 档**提升到 A 档**并加入 `setup_full.sh` —— 它装在 `/usr/share/`，不占工作区与快照额度。
 
@@ -63,6 +69,10 @@
 | 恶意代码分析 | **完整** | capa / yara / floss / ssdeep / clamav / pe_deep_scan |
 | 取证 | **较完整** | volatility3 / sleuthkit / foremost / testdisk / zeek |
 | AI / LLM 安全 | **已覆盖** | garak / pyrit / llm-guard |
+| 钓鱼演练 | **已补装（待验证）** | GoPhish（演练平台）+ swaks/mailutils（邮件投递与测试） |
+| 威胁狩猎 | **已补装（待验证）** | sigma-cli（引擎）+ SigmaHQ 规则库（可选）+ eve-n（已装） |
+| 载荷生成 / 免杀 | **部分补装（待验证）** | EvilClippy（.NET）+ ScareCrow（loader）；C2 框架仍跳过（编译/规则排除） |
+| 渗透知识库 | **已补装（待验证）** | GTFOBins / LOLBAS / HackTricks（轻量纯文本，检索价值高） |
 
 **结论**：
 

@@ -2,6 +2,34 @@
 
 > 状态为当前沙箱真实自检结果。A档尽力安装；B档仅记录；C档按规则跳过。所有网络/攻击类工具只做版本、import 或路径检查，未向外网发起扫描。
 
+---
+
+## 第二批补装（2026-10-06 追加 · 脚本已就位 · **待沙箱验证**）
+
+> 以下条目已写入 `setup_full.sh`，**尚未在沙箱内实测**——下一轮执行 `bash tools/setup_full.sh` 时才会安装并自检。
+> 状态列请在验证后由 `tools/setup_tools_doctor.py` 刷新。
+
+| 类别 | 工具 | 用途 | 状态 | 备注 |
+|---|---|---|---|---|
+| 钓鱼演练 | **GoPhish** | 开源钓鱼演练平台（红蓝对抗标准环节） | 待验证 | 预编译二进制 |
+| 邮件 | **swaks** / **mailutils** | SMTP 客户端、邮件头与投递测试 | 待验证 | apt |
+| 威胁狩猎 | **sigma-cli** | Sigma 规则引擎（配合规则库做日志狩猎） | 待验证 | pip |
+| 载荷生成 | **EvilClippy** | .NET 程序集注入与混淆 | 待验证 | git；实际运行需 mono |
+| 载荷生成 | **ScareCrow** | 生成免杀 loader（含 shellcode 编码器） | 待验证 | git；编译可能超 120s |
+| 社工字典 | **CUpp** | 社工字典生成器 | 待验证 | git |
+| 知识库 | **GTFOBins** | Linux 提权/绕过命令库 | 待验证 | 轻量纯文本，检索价值高 |
+| 知识库 | **LOLBAS** | Windows 提权/绕过命令库 | 待验证 | 轻量纯文本 |
+| 知识库 | **HackTricks** | 渗透技巧全库（侦察→利用→后渗透） | 待验证 | 轻量纯文本 |
+| 规则库（可选） | SigmaHQ / PayloadsAllTheThings / SecLists | 狩猎规则 / payload 库 / 词表 | 默认跳过 | 设 `SETUP_BIGRULES=1` 开启 |
+
+**验证命令**：
+```bash
+bash tools/setup_full.sh && python3 tools/setup_tools_doctor.py
+```
+
+---
+
+
 | 类别 | 工具 | 一句话用途 | 状态 | 版本 | 沙箱限制/安装备注 | 自检 |
 |---|---|---|---|---|---|---|
 | 逆向与动态 | radare2 | 反汇编/逆向 | 可用 | 6.2.4 | 仅本地自检；禁止未授权扫描 | cmd:r2 |
