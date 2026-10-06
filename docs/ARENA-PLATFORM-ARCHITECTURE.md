@@ -194,16 +194,46 @@ work-os / linear / cursor / **anthropic** / uber / manus / zapier / stripe / tri
 | arena 执行器 | `/root/.server/`（Python 3.13：`main.py` / `stream.py` / `messaging.py` / `envs.py` / `contexts.py` + `.venv`） |
 | 隔离特征 | KASLR disabled；无 DMI；单会话独立工作区（不同任务的 `/tmp/arena-workspace` 互不可见） |
 
-### 4.1 工作区同步协议（`/tmp/arena-workspace/`）
+### 4.1 工作区持久化机制（沙箱内实测验证，2026-10-06）
 
-| 文件 | 结构 | 作用 |
+**结论：`/home/user` 下的普通文件跨轮次自动持久化，零凭据。** 这使「记忆闭环」无需任何 token。
+
+**三阶段机制**：
+
+| 阶段 | 产物 | 说明 |
 |---|---|---|
-| `baseline-input.json` | `{files:{name:{hash,size}}}` | 输入侧基线 |
-| `baseline.json` | `{files:{name:{hash,size,mtimeNs}}}` | 当前基线快照（纳秒 mtime） |
-| `changes.json` | `{files:{…}, deletedPaths:[], omittedPaths:[], preOmissionFileCount, preOmissionSizeBytes}` | 差异清单（含删除/省略追踪与上限统计） |
-| `changes.zip` | ZIP | 变更内容打包（实测 148KB） |
+| 运行中 | `baseline.json` | 当前基线快照，每项含 `hash`(sha256-b64url) / `size` / `mtimeNs` |
+| 收工时 | `changes.json` + 内容包 | 增量清单：`files` / `deletedPaths` / `omittedPaths` / `preOmissionFileCount` / `preOmissionSizeBytes` |
+| 下轮启动 | `hydrate.zip` | 平台据此**恢复工作区文件**，随后写入新的 `baseline.json` |
 
-**机制（中等置信度）**：平台以「基线 + 差异」采集沙箱工作区变更并回传持久化；`omittedPaths` 表明存在大小/数量上限过滤。
+**活动轮次的实际文件清单**：`['baseline-input.json', 'baseline.json', 'hydrate.zip']`
+（`changes.json` 在活动轮次中**不存在**——它只在收工时短暂生成，这解释了此前"changes.json 时有时无"的观测）
+
+**验证方法（三方 hash 对照，可复用）**：
+```bash
+sha256sum MEMORY_UPDATE.md                      # 1. 当前文件 hex 摘要
+python3 -c "import hashlib,base64,sys;d=open('MEMORY_UPDATE.md','rb').read();print(base64.urlsafe_b64encode(hashlib.sha256(d).digest()).rstrip(b'=').decode())"   # 2. 转 base64url
+# 3. 与 /tmp/arena-workspace/baseline.json 中同文件条目的 hash 字段比对
+python3 -c "import json;b=json.load(open('/tmp/arena-workspace/baseline.json'));print(b['root']['entries']['MEMORY_UPDATE.md'])" 2>/dev/null \
+  || python3 -c "import json;b=json.load(open('/tmp/arena-workspace/baseline.json'));print([v for k,v in b.get('files',b).items() if 'MEMORY' in k])"
+```
+三者一致 ⇒ 文件已被平台纳入持久化基线。
+
+**实测已验证可同步的文件**：`SKILL.md`、`SKILLS.md`、`MEMORY.md`、`MEMORY_UPDATE.md`、`skills/*/SKILL.md`
+（hash 全部 baseline 匹配）
+
+**限制（必须预知）**：
+
+| 限制 | 影响 |
+|---|---|
+| 快照上限约 **128 MB / 10,000 文件** | 技能库保持小型文本+脚本即可；大二进制/数据集不适用 |
+| 不保证同步：`.git/config`、凭据路径 | Git remote 与 token 每次都要重新配 |
+| 不保证同步：`node_modules`、`.venv`、缓存、构建目录 | 依赖需每轮重装（`bash scripts/setup.sh` 约 30 秒） |
+| 收工时才生成 changes | 轮次中途进程被杀 = 未生成快照 = 该轮产出丢失 |
+
+**开工/收工仪式（写入 MEMORY.md 顶部）**：
+- 开工：`ls /home/user/ha-ha` 判断库是否已 hydrate → 缺则 clone → **无论有无都跑一次 `bash scripts/setup.sh`** 验依赖
+- 收工：把结论写入 `MEMORY_UPDATE.md`（工作区根目录）→ 平台自动持久化，无需 token
 
 ---
 
