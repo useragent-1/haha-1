@@ -12,10 +12,18 @@ git_clone(){ local tool=$1 url=$2 dest=$3; local log r; log="$LOGDIR/git-$tool.l
 
 if [[ ${SKIP_APT_PIP:-0} != 1 ]]; then
  echo '[apt update]'; timeout 120s sudo apt-get update >"$LOGDIR/apt-update.log" 2>&1 || record apt apt-update FAIL $? "$LOGDIR/apt-update.log"
- APT=(radare2 gdb lldb binutils gawk patchelf strace ltrace qemu-user-static build-essential cmake golang-go rustc cargo python3-dev python3-venv yara afl++ radamsa nmap masscan tcpdump tshark zeek-client suricata hping3 netcat-openbsd socat dnsutils ethtool arp-scan sqlmap nikto ffuf feroxbuster gobuster wpscan whatweb theharvester joomscan droopescan hydra medusa ncrack cewl crunch smbclient ldap-utils krb5-user dnsrecon fierce enum4linux proxychains4 binwalk aircrack-ng reaver steghide libimage-exiftool-perl foremost testdisk sleuthkit ssdeep tlsh yq jq sqlite3 postgresql-client redis-tools tmux pandoc graphviz file lsof)
+ APT=(radare2 gdb lldb binutils gawk patchelf strace ltrace qemu-user-static build-essential cmake golang-go rustc cargo python3-dev python3-venv yara afl++ radamsa nmap masscan tcpdump tshark zeek-client suricata hping3 netcat-openbsd socat dnsutils ethtool arp-scan sqlmap nikto ffuf feroxbuster gobuster wpscan whatweb theharvester joomscan droopescan hydra medusa ncrack cewl crunch smbclient ldap-utils krb5-user dnsrecon fierce enum4linux proxychains4 binwalk aircrack-ng reaver steghide libimage-exiftool-perl foremost testdisk sleuthkit ssdeep tlsh yq jq sqlite3 postgresql-client redis-tools tmux pandoc graphviz file lsof wordlists)
  for p in "${APT[@]}";do apt_install "$p";done
- PIP=(angr pwntools lief pefile pyelftools macholib capstone unicorn keystone-engine ropper ROPgadget z3-solver miasm qiling flare-capa r2pipe frida-tools objection yara-x pocsuite3 boofuzz hypothesis scapy mitmproxy impacket arjun dirsearch wapiti cmseek commix h8mail shhgit detect-secrets recon-ng sublist3r wifite2 volatility3 sievecarve yara-python checkov kube-hunter cti-python-sdk stix2 mitreattack-python requests colorama)
+ # 注：wordlists 提供 rockyou.txt（约 130MB）。不进工作区，故不占快照额度。
+ PIP=(angr pwntools lief pefile pyelftools macholib capstone unicorn keystone-engine ropper ROPgadget z3-solver miasm qiling flare-capa r2pipe frida-tools objection yara-x pocsuite3 boofuzz hypothesis scapy mitmproxy impacket arjun dirsearch wapiti cmseek commix h8mail shhgit detect-secrets recon-ng sublist3r wifite2 volatility3 yara-python checkov kube-hunter stix2 mitreattack-python requests colorama)
  for p in "${PIP[@]}";do pip_install "$p";done
+ # PyPI 无官方发行版的三件：改用 GitHub 源（失败不阻塞后续）
+ pip_install "git+https://github.com/siegilt/sievecarve.git"          sievecarve
+ pip_install "git+https://github.com/mitre-attack/cti-python-sdk.git" cti_python_sdk
+ # boofuzz 需要可提升的 core hard limit；沙箱禁止时由 hypothesis + afl++ 覆盖同一用途。
+ if ! python3 -c "import boofuzz" >/dev/null 2>&1; then
+     record pip boofuzz FAIL 78 'core hard limit cannot be raised in sandbox; use hypothesis/afl++ instead'
+ fi
 fi
 
 RX='(?i)(linux.*(amd64|x86_64)|(amd64|x86_64).*linux).*(tar\.gz|tgz|zip)$'
