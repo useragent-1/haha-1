@@ -1,0 +1,13 @@
+=== first apt attempt ===
+E: Failed to fetch http://deb.debian.org/debian/pool/main/q/qemu/qemu-user_10.0.11%2bds-0%2bdeb13u1_amd64.deb  404  Not Found
+E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+APT_EXIT=100
+
+=== requested frida version form ===
+usage: frida-ps [options]
+frida-ps: error: unrecognized arguments: -V
+EXIT=2
+
+=== first triage invocation after snapshot restore ===
+/bin/bash: /home/user/push-tmp/scripts/dynamic/triage_run.sh: Permission denied
+EXIT=126

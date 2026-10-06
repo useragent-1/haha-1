@@ -1,0 +1,23 @@
+{
+  "schema": "frontend-re/sourcemap-v1",
+  "javascript": "/home/user/p3-frontend-test/fixture/app.min.js",
+  "map_count": 1,
+  "maps": [
+    {
+      "reference": "data:[REDACTED sha256=9098a63e8744]",
+      "location": "inline",
+      "version": 3,
+      "sourceRoot": "",
+      "sources": [
+        {
+          "index": 0,
+          "name": "src/app.js",
+          "recovered": true,
+          "path": "/home/user/p3-frontend-test/recovered/sources/src/app.js",
+          "sha256": "6adb45b85cd92ab05ad2a03f9d741698f66656dde880942debd03ec8b2184b57"
+        }
+      ],
+      "names_count": 0
+    }
+  ]
+}

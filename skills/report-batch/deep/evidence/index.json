@@ -1,0 +1,24 @@
+{
+  "schema": "report/batch-index-v1",
+  "generated_utc": "2026-10-06T03:54:45.423902+00:00",
+  "sample_count": 2,
+  "ok_count": 2,
+  "rows": [
+    {
+      "sample": "echo",
+      "path": "/home/user/p5-report-test/samples/echo",
+      "bytes": 43432,
+      "sha256": "416903b966ea8a2fc3b11e09b03a30e09aaf3b2e8f5a581b4c1b80899edf545f",
+      "status": "ok",
+      "exit_code": 0
+    },
+    {
+      "sample": "true",
+      "path": "/home/user/p5-report-test/samples/true",
+      "bytes": 43432,
+      "sha256": "b381cc8c55ec524b9fa92897f0882e855357468b4a763519cec47e05994d61ff",
+      "status": "ok",
+      "exit_code": 0
+    }
+  ]
+}

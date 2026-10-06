@@ -1,0 +1,23 @@
+set pagination off
+set confirm off
+set print thread-events off
+set debuginfod enabled off
+handle SIGPIPE nostop noprint pass
+python
+import gdb
+def dynamic_recon_stop(event):
+    print("\n=== GDB_STOP_EVENT ===")
+    try: gdb.execute("thread apply all bt full")
+    except gdb.error as e: print("backtrace_error:", e)
+    try: gdb.execute("info registers")
+    except gdb.error as e: print("register_error:", e)
+    try: gdb.execute("info proc mappings")
+    except gdb.error as e: print("mapping_error:", e)
+    try: gdb.execute("x/8i $pc")
+    except gdb.error as e: print("disassembly_error:", e)
+gdb.events.stop.connect(dynamic_recon_stop)
+end
+run
+printf "\n=== GDB_POST_RUN ===\n"
+info program
+quit

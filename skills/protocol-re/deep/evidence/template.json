@@ -1,0 +1,43 @@
+{
+  "schema": "protocol-re/parser-template-v1",
+  "protocols": [
+    "DNS",
+    "HTTP",
+    "IPv4",
+    "TCP",
+    "UDP"
+  ],
+  "fields": {
+    "IPv4": [
+      "src",
+      "dst",
+      "ttl"
+    ],
+    "TCP": [
+      "sport",
+      "dport",
+      "flags",
+      "seq",
+      "ack"
+    ],
+    "UDP": [
+      "sport",
+      "dport"
+    ],
+    "DNS": [
+      "id",
+      "qr",
+      "rcode",
+      "qname",
+      "qtype",
+      "answers"
+    ],
+    "HTTP": [
+      "method",
+      "path",
+      "headers.host",
+      "headers.user-agent",
+      "headers.authorization(redacted)"
+    ]
+  }
+}

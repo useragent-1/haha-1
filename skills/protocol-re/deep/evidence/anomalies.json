@@ -1,0 +1,41 @@
+{
+  "schema": "protocol-re/anomaly-v1",
+  "pcap": "/home/user/p2-protocol-test/mixed.pcap",
+  "packet_count": 6,
+  "length_summary": {
+    "min": 72,
+    "max": 171,
+    "mean": 142.66666666666666
+  },
+  "finding_count": 5,
+  "findings": [
+    {
+      "type": "suspicious-user-agent",
+      "packet": 3,
+      "value": "curl/8.14.1"
+    },
+    {
+      "type": "suspicious-user-agent",
+      "packet": 4,
+      "value": "curl/8.14.1"
+    },
+    {
+      "type": "suspicious-user-agent",
+      "packet": 5,
+      "value": "curl/8.14.1"
+    },
+    {
+      "type": "suspicious-user-agent",
+      "packet": 6,
+      "value": "curl/8.14.1"
+    },
+    {
+      "type": "periodic-beaconing",
+      "flow": "('TCP', '192.0.2.10', 40000, '203.0.113.20', 80)",
+      "samples": 4,
+      "mean_interval": 5.0,
+      "coefficient_of_variation": 0.0
+    }
+  ],
+  "notice": "Heuristics are indicators, not proof of C2 or maliciousness."
+}

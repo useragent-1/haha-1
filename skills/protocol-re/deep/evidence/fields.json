@@ -1,0 +1,156 @@
+{
+  "schema": "protocol-re/fields-v1",
+  "records": [
+    {
+      "packet": 1,
+      "time": 1.0,
+      "length": 72,
+      "network": "IPv4",
+      "src": "192.0.2.10",
+      "dst": "198.51.100.53",
+      "ttl": 64,
+      "transport": "UDP",
+      "sport": 53000,
+      "dport": 53,
+      "dns": {
+        "id": 4660,
+        "qr": 0,
+        "opcode": 0,
+        "rcode": 0,
+        "qname": "example.test",
+        "qtype": 1
+      }
+    },
+    {
+      "packet": 2,
+      "time": 1.05,
+      "length": 100,
+      "network": "IPv4",
+      "src": "198.51.100.53",
+      "dst": "192.0.2.10",
+      "ttl": 64,
+      "transport": "UDP",
+      "sport": 53,
+      "dport": 53000,
+      "dns": {
+        "id": 4660,
+        "qr": 1,
+        "opcode": 0,
+        "rcode": 0,
+        "qname": "example.test",
+        "qtype": 1,
+        "answers": [
+          {
+            "name": "example.test",
+            "type": 1,
+            "rdata": "203.0.113.20"
+          }
+        ]
+      }
+    },
+    {
+      "packet": 3,
+      "time": 2.0,
+      "length": 171,
+      "network": "IPv4",
+      "src": "192.0.2.10",
+      "dst": "203.0.113.20",
+      "ttl": 64,
+      "transport": "TCP",
+      "sport": 40000,
+      "dport": 80,
+      "flags": "PA",
+      "seq": 1,
+      "ack": 0,
+      "http": {
+        "method": "GET",
+        "path": "/api/status",
+        "headers": {
+          "host": "api.example.test",
+          "user-agent": "curl/8.14.1",
+          "authorization": "Bearer [REDACTED]"
+        }
+      },
+      "payload_length": 117,
+      "payload_prefix_hex": "474554202f6170692f73746174757320485454502f312e310d0a486f73743a20"
+    },
+    {
+      "packet": 4,
+      "time": 7.0,
+      "length": 171,
+      "network": "IPv4",
+      "src": "192.0.2.10",
+      "dst": "203.0.113.20",
+      "ttl": 64,
+      "transport": "TCP",
+      "sport": 40000,
+      "dport": 80,
+      "flags": "PA",
+      "seq": 118,
+      "ack": 0,
+      "http": {
+        "method": "GET",
+        "path": "/api/status",
+        "headers": {
+          "host": "api.example.test",
+          "user-agent": "curl/8.14.1",
+          "authorization": "Bearer [REDACTED]"
+        }
+      },
+      "payload_length": 117,
+      "payload_prefix_hex": "474554202f6170692f73746174757320485454502f312e310d0a486f73743a20"
+    },
+    {
+      "packet": 5,
+      "time": 12.0,
+      "length": 171,
+      "network": "IPv4",
+      "src": "192.0.2.10",
+      "dst": "203.0.113.20",
+      "ttl": 64,
+      "transport": "TCP",
+      "sport": 40000,
+      "dport": 80,
+      "flags": "PA",
+      "seq": 235,
+      "ack": 0,
+      "http": {
+        "method": "GET",
+        "path": "/api/status",
+        "headers": {
+          "host": "api.example.test",
+          "user-agent": "curl/8.14.1",
+          "authorization": "Bearer [REDACTED]"
+        }
+      },
+      "payload_length": 117,
+      "payload_prefix_hex": "474554202f6170692f73746174757320485454502f312e310d0a486f73743a20"
+    },
+    {
+      "packet": 6,
+      "time": 17.0,
+      "length": 171,
+      "network": "IPv4",
+      "src": "192.0.2.10",
+      "dst": "203.0.113.20",
+      "ttl": 64,
+      "transport": "TCP",
+      "sport": 40000,
+      "dport": 80,
+      "flags": "PA",
+      "seq": 352,
+      "ack": 0,
+      "http": {
+        "method": "GET",
+        "path": "/api/status",
+        "headers": {
+          "host": "api.example.test",
+          "user-agent": "curl/8.14.1",
+          "authorization": "Bearer [REDACTED]"
+        }
+      },
+      "payload_length": 117,
+      "payload_prefix_hex": "474554202f6170692f73746174757320485454502f312e310d0a486f73743a20"
+    }
+  ]
+}

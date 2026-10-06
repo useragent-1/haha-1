@@ -1,0 +1,75 @@
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000555555555139 in crash_here () at /home/user/dynamic-fixtures/crash.c:1
+1	__attribute__((noinline)) static void crash_here(void) { volatile int *p = (int *)0; *p = 7; }
+process 1948
+Mapped address spaces:
+
+Start Addr         End Addr           Size               Offset             Perms File
+0x0000555555554000 0x0000555555555000 0x1000             0x0                r--p  /home/user/dynamic-fixtures/crash
+0x0000555555555000 0x0000555555556000 0x1000             0x1000             r-xp  /home/user/dynamic-fixtures/crash
+0x0000555555556000 0x0000555555557000 0x1000             0x2000             r--p  /home/user/dynamic-fixtures/crash
+0x0000555555557000 0x0000555555558000 0x1000             0x2000             r--p  /home/user/dynamic-fixtures/crash
+0x0000555555558000 0x0000555555559000 0x1000             0x3000             rw-p  /home/user/dynamic-fixtures/crash
+0x00007ffff7dbf000 0x00007ffff7dc2000 0x3000             0x0                rw-p
+0x00007ffff7dc2000 0x00007ffff7dea000 0x28000            0x0                r--p  /usr/lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff7dea000 0x00007ffff7f4d000 0x163000           0x28000            r-xp  /usr/lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff7f4d000 0x00007ffff7fa3000 0x56000            0x18b000           r--p  /usr/lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff7fa3000 0x00007ffff7fa7000 0x4000             0x1e0000           r--p  /usr/lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff7fa7000 0x00007ffff7fa9000 0x2000             0x1e4000           rw-p  /usr/lib/x86_64-linux-gnu/libc.so.6
+0x00007ffff7fa9000 0x00007ffff7fb6000 0xd000             0x0                rw-p
+0x00007ffff7fbf000 0x00007ffff7fc1000 0x2000             0x0                rw-p
+0x00007ffff7fc1000 0x00007ffff7fc5000 0x4000             0x0                r--p  [vvar]
+0x00007ffff7fc5000 0x00007ffff7fc7000 0x2000             0x0                r-xp  [vdso]
+0x00007ffff7fc7000 0x00007ffff7fc8000 0x1000             0x0                r--p  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+0x00007ffff7fc8000 0x00007ffff7ff0000 0x28000            0x1000             r-xp  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+0x00007ffff7ff0000 0x00007ffff7ffb000 0xb000             0x29000            r--p  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+0x00007ffff7ffb000 0x00007ffff7ffd000 0x2000             0x34000            r--p  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+0x00007ffff7ffd000 0x00007ffff7ffe000 0x1000             0x36000            rw-p  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+0x00007ffff7ffe000 0x00007ffff7fff000 0x1000             0x0                rw-p
+0x00007ffffffde000 0x00007ffffffff000 0x21000            0x0                rw-p  [stack]
+0xffffffffff600000 0xffffffffff601000 0x1000             0x0                --xp  [vsyscall]
+
+Thread 1 (Thread 0x7ffff7dbf740 (LWP 1948) "crash"):
+#0  0x0000555555555139 in crash_here () at /home/user/dynamic-fixtures/crash.c:1
+        p = 0x0
+#1  0x000055555555514b in middle () at /home/user/dynamic-fixtures/crash.c:2
+No locals.
+#2  0x0000555555555157 in main () at /home/user/dynamic-fixtures/crash.c:3
+No locals.
+rax            0x0                 0
+rbx            0x7fffffffec88      140737488350344
+rcx            0x555555557e08      93824992247304
+rdx            0x7fffffffec98      140737488350360
+rsi            0x7fffffffec88      140737488350344
+rdi            0x1                 1
+rbp            0x7fffffffeb50      0x7fffffffeb50
+rsp            0x7fffffffeb50      0x7fffffffeb50
+r8             0x0                 0
+r9             0x7ffff7fccaa0      140737353927328
+r10            0x7fffffffe8b0      140737488349360
+r11            0x202               514
+r12            0x0                 0
+r13            0x7fffffffec98      140737488350360
+r14            0x7ffff7ffd000      140737354125312
+r15            0x555555557e08      93824992247304
+rip            0x555555555139      0x555555555139 <crash_here+16>
+eflags         0x10246             [ PF ZF IF RF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+k0             0x800080            8388736
+k1             0x44002             278530
+k2             0x0                 0
+k3             0x0                 0
+k4             0x0                 0
+k5             0x0                 0
+k6             0x0                 0
+k7             0x0                 0
+fs_base        0x7ffff7dbf740      140737351776064
+gs_base        0x0                 0

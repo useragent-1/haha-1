@@ -1,0 +1,41 @@
+{
+  "schema": "dynamic-recon/triage-v1",
+  "target": "/usr/bin/curl",
+  "started_utc": "2026-10-06T03:48:35Z",
+  "finished_utc": "2026-10-06T03:48:35.931279+00:00",
+  "timeout_seconds": 20,
+  "stages": [
+    {
+      "stage": "baseline",
+      "exit_code": "0"
+    },
+    {
+      "stage": "strace",
+      "exit_code": "0"
+    },
+    {
+      "stage": "ltrace",
+      "exit_code": "0"
+    },
+    {
+      "stage": "gdb",
+      "exit_code": "0"
+    }
+  ],
+  "artifacts": [
+    "baseline.stderr",
+    "baseline.stdout",
+    "command.shell",
+    "gdb.commands",
+    "gdb.stderr",
+    "gdb.stdout",
+    "ltrace.log",
+    "ltrace.stderr",
+    "ltrace.stdout",
+    "metadata.txt",
+    "status.tsv",
+    "strace.log",
+    "strace.stderr",
+    "strace.stdout"
+  ]
+}

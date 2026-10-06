@@ -17,27 +17,27 @@
 ===== A. 系统与身份 =====
 $ whoami; id; uname -a; cat /etc/os-release 2>/dev/null | head -3; cat /proc/1/cgroup 2>/dev/null
 user
-uid=1000(user) gid=1000(user) groups=1000(user),27(sudo),100(users)
+uid
 Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Fri Jul 17 14:31:34 UTC 2026 x86_64 GNU/Linux
-PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
-NAME="Debian GNU/Linux"
-VERSION_ID="13"
+PRETTY_NAME
+NAME
+VERSION_ID
 0::/init.scope
 
 ===== B. 环境变量（全量） =====
 $ env | sort
-E2B_EVENTS_ADDRESS=http://192.0.2.1
-E2B_SANDBOX=true
-E2B_SANDBOX_ID=i7cyophzmk881wpihz4o7
-E2B_TEMPLATE_ID=nlhz8vlwyupq845jsdg9
-HOME=/home/user
-LOGNAME=user
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
-PWD=/home/user
-SHELL=/bin/bash
-SHLVL=2
-USER=user
-_=/usr/bin/env
+E2B_EVENTS_ADDRESS
+E2B_SANDBOX
+E2B_SANDBOX_ID
+E2B_TEMPLATE_ID
+HOME
+LOGNAME
+PATH
+PWD
+SHELL
+SHLVL
+USER
+_
 
 ===== C. 网络 =====
 $ cat /etc/hosts; cat /etc/resolv.conf; ip addr 2>/dev/null || ifconfig 2>/dev/null; ip route 2>/dev/null; ss -tlnp 2>/dev/null || netstat -tlnp 2>/dev/null

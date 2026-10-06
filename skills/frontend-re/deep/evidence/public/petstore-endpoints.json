@@ -1,0 +1,1044 @@
+{
+  "schema": "frontend-re/endpoints-v1",
+  "input": "https://petstore3.swagger.io/",
+  "sources": [
+    {
+      "source": "https://petstore3.swagger.io/",
+      "sha256": "7b9bafc5d8b1bde52b53d50e595aff01c0f2449c2f45dc778f46b540e3695e6b",
+      "characters": 1258
+    },
+    {
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "sha256": "35976cdc1c23732b4064856ac734444c78ac0bc71fdafa1989ac5fc9038c4913",
+      "characters": 1509033
+    },
+    {
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "sha256": "607f3740ec142bc9aeff9fc0058f46d2abcca0fd9101de0a6d168cd4a24eaa16",
+      "characters": 250129
+    },
+    {
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "sha256": "3a032aa45d63275f885eca258ce0e84401bbb56ad7dbb71751d054ec2e1cd0ec",
+      "characters": 1499
+    }
+  ],
+  "finding_count": 169,
+  "findings": [
+    {
+      "type": "url",
+      "value": "https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);",
+      "source": "https://petstore3.swagger.io/",
+      "line": 7
+    },
+    {
+      "type": "domain",
+      "value": "www.googletagmanager.com",
+      "source": "https://petstore3.swagger.io/",
+      "line": 7
+    },
+    {
+      "type": "url",
+      "value": "https://www.googletagmanager.com/ns.html?id=GTM-PFFSBW3",
+      "source": "https://petstore3.swagger.io/",
+      "line": 15
+    },
+    {
+      "type": "domain",
+      "value": "www.googletagmanager.com",
+      "source": "https://petstore3.swagger.io/",
+      "line": 15
+    },
+    {
+      "type": "url",
+      "value": "http://fb.me/use-check-prop-types",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://reactjs.org/docs/error-decoder.html?invariant=",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/1999/xlink",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/XML/1998/namespace",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/2000/svg",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/1998/Math/MathML",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/1999/xhtml",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/zloirock/core-js/blob/v3.40.0/LICENSE",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/zloirock/core-js",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/highlightjs/highlight.js/issues/2277",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/highlightjs/highlight.js/issues/2534",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/highlightjs/highlight.js/issues/2559",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/highlightjs/highlight.js/pull/2844",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://redux.js.org/Errors?code=$",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "fb.me",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "i.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "w.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "u.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "reactjs.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "j.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "www.w3.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "o.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "zloirock.ru",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "github.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "j.noHighlightRe.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "x.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "L.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "C.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "redux.js.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "yaml.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "gr.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "yr.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "authorization-pattern",
+      "value": "[REDACTED expression]",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/2000/svg",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://base",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc6901#section-4",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "http://json-schema.org/draft-04/schema#",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://spec.openapis.org/oas/3.1/dialect/base",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "http://json-schema.org/draft-06/schema#",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "http://json-schema.org/draft-07/schema#",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://json-schema.org/draft/2019-09/schema",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://json-schema.org/draft/2020-12/schema",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.rfc-editor.org/rfc/rfc6570#section-2",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.rfc-editor.org/rfc/rfc6570#section-2.1",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.rfc-editor.org/errata/eid6937",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.rfc-editor.org/rfc/rfc6570#section-1.5",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://vladimirgorej.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc3986#section-3.3",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc3986#section-2.3",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc3986#section-2.1",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc3986#section-2.2",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc5234#appendix-B.1",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc6265#section-4.2.1",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc6265#section-4.1.1",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.rfc-editor.org/errata/eid5518",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.rfc-editor.org/errata/eid8242",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc6265#section-2.2",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc9110#section-5.6.2",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://datatracker.ietf.org/doc/html/rfc2616#section-2.2",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://validator.swagger.io/validator",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/1999/xlink",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://twitter.com/hashtag/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.facebook.com/hashtag/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://instagram.com/explore/tags/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.tiktok.com/tag/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://twitter.com/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://instagram.com/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://soundcloud.com/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://www.tiktok.com/@",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/1998/Math/MathML",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/1999/xhtml",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://spdx.org/licenses/$",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://example.com/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://example.com/dictionary/",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Br.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "r.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Dr.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "yaml.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Fr.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Lr.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Xr.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "www.w3.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "log.info",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "g.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "i.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "example.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "o.when.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Fo.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "w.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "a.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Wl.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "datatracker.ietf.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "json-schema.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "spec.openapis.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "this.detectionRegExp.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "www.rfc-editor.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "vladimirgorej.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "validator.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "s.info",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "lA.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "uA.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "SA.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "gA.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "bA.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "twitter.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "www.facebook.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "instagram.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "www.tiktok.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "soundcloud.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "mC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "this.hasFullProtocolRegex.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "this.hasWordCharAfterProtocolRegex.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "C.wordCharRegExp.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "hC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "kC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "nC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "u.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "tC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "sC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "rC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "oC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "iC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "BC.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "RegExp.prototype.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "s.specSelectors.info",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "spdx.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "authorization-pattern",
+      "value": "[REDACTED expression]",
+      "source": "https://petstore3.swagger.io/swagger-ui-bundle.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/zloirock/core-js/blob/v3.40.0/LICENSE",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/zloirock/core-js",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "http://www.w3.org/2000/svg",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "e.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "zloirock.ru",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "github.com",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "a.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "i.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "s.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "u.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "www.w3.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "yaml.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "dt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "yt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "authorization-pattern",
+      "value": "[REDACTED expression]",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "Pt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Rt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Nt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "yaml.org",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Tt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Lt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "Gt.test",
+      "source": "https://petstore3.swagger.io/swagger-ui-standalone-preset.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://petstore.swagger.io/v2/swagger.json",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "petstore.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 2
+    },
+    {
+      "type": "url",
+      "value": "https://petstore3.swagger.io/api/v3/openapi.json,petstore31.swagger.io=https://petstore31.swagger.io/api/v31/openapi.json,petstore.swagger.io=https://petstore.swagger.io/v2/swagger.json,generator.swagger.io=https://generator.swagger.io/api/swagger.json,generator3.swagger.io=https://generator3.swagger.io/openapi.json,validator.swagger.io=https://validator.swagger.io/validator/openapi.json,oai.swagger.io=https://oai.swagger.io/api/openapi.json,converter.swagger.io=https://converter.swagger.io/api/openapi.json",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "petstore3.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "petstore31.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "petstore.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "generator.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "generator3.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "validator.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "oai.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "domain",
+      "value": "converter.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 3
+    },
+    {
+      "type": "url",
+      "value": "https://validator.swagger.io/validator",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 23
+    },
+    {
+      "type": "domain",
+      "value": "validator.swagger.io",
+      "source": "https://petstore3.swagger.io/swagger-initializer.js",
+      "line": 23
+    }
+  ],
+  "notice": "Authorization values are never emitted."
+}

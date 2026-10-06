@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Toolpack Validation</title>
+<style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem;color:#17202a}h1,h2{color:#17365d}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:.45rem;text-align:left}pre{background:#f5f7f9;border:1px solid #d9e0e6;padding:1rem;overflow:auto;white-space:pre-wrap}.high{color:#176b2c}.medium{color:#8a5900}.low{color:#a12424}.meta{color:#566}section{margin:2rem 0}</style>
+</head>
+<body>
+<h1>Agent Toolpack Validation</h1>
+<p class="meta">Generated UTC: 2026-10-06T03:54:45.462849+00:00</p>
+<section>
+<h2>Conclusions</h2>
+<p>Confidence: <strong class="high">HIGH</strong></p>
+<ul>
+<li>Two harmless system binaries completed auto_analyze with exit code 0.</li>
+<li>UPX unpack evidence records distinct packed and unpacked SHA-256 values.</li>
+</ul>
+</section>
+<section>
+<h2>Evidence table</h2>
+<table>
+<thead><tr><th>Path</th><th>Type</th><th>Bytes</th><th>SHA-256</th></tr></thead>
+<tbody>
+<tr><td>/home/user/p5-report-test/batch/index.json</td><td>JSON</td><td>633</td><td><code>12759f15b216423965ac5c44ea8bc819df67aa42a266d4e20e4c83da196328f0</code></td></tr>
+<tr><td>/home/user/p5-report-test/batch/index.md</td><td>Markdown/Text</td><td>309</td><td><code>2b0a82a122d2891b3e50f7a7c8f63ab70e90f59de682c926b463410a5218ada5</code></td></tr>
+<tr><td>/home/user/p4-upx-test/unpack-result/diff.json</td><td>JSON</td><td>6640</td><td><code>f888b5528f9236ea49a19e00a91cca0cc41ec00df0686def13cd704bc41570b2</code></td></tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>/home/user/p5-report-test/batch/index.json</h2>
+<p class="meta">JSON</p>
+<pre>{
+  &quot;schema&quot;: &quot;report/batch-index-v1&quot;,
+  &quot;generated_utc&quot;: &quot;2026-10-06T03:54:45.423902+00:00&quot;,
+  &quot;sample_count&quot;: 2,
+  &quot;ok_count&quot;: 2,
+  &quot;rows&quot;: [
+    {
+      &quot;sample&quot;: &quot;echo&quot;,
+      &quot;path&quot;: &quot;/home/user/p5-report-test/samples/echo&quot;,
+      &quot;bytes&quot;: 43432,
+      &quot;sha256&quot;: &quot;416903b966ea8a2fc3b11e09b03a30e09aaf3b2e8f5a581b4c1b80899edf545f&quot;,
+      &quot;status&quot;: &quot;ok&quot;,
+      &quot;exit_code&quot;: 0
+    },
+    {
+      &quot;sample&quot;: &quot;true&quot;,
+      &quot;path&quot;: &quot;/home/user/p5-report-test/samples/true&quot;,
+      &quot;bytes&quot;: 43432,
+      &quot;sha256&quot;: &quot;b381cc8c55ec524b9fa92897f0882e855357468b4a763519cec47e05994d61ff&quot;,
+      &quot;status&quot;: &quot;ok&quot;,
+      &quot;exit_code&quot;: 0
+    }
+  ]
+}</pre>
+</section>
+<section>
+<h2>/home/user/p5-report-test/batch/index.md</h2>
+<p class="meta">Markdown/Text</p>
+<pre># Batch Analysis Index
+
+- Samples: 2
+- OK: 2
+
+| Sample | Bytes | SHA-256 | Status | Exit |
+|---|---:|---|---|---:|
+| `echo` | 43432 | `416903b966ea8a2fc3b11e09b03a30e09aaf3b2e8f5a581b4c1b80899edf545f` | ok | 0 |
+| `true` | 43432 | `b381cc8c55ec524b9fa92897f0882e855357468b4a763519cec47e05994d61ff` | ok | 0 |
+</pre>
+</section>
+<section>
+<h2>/home/user/p4-upx-test/unpack-result/diff.json</h2>
+<p class="meta">JSON</p>
+<pre>{
+  &quot;schema&quot;: &quot;unpack-deobfusc/diff-v1&quot;,
+  &quot;before&quot;: {
+    &quot;path&quot;: &quot;/home/user/p4-upx-test/unpack-result/original.bin&quot;,
+    &quot;size&quot;: 5936,
+    &quot;sha256&quot;: &quot;6faa27cf86b908dbe7d3c4ce84e7ef0d759c64ade7e6e2853f8ba1a17f574c79&quot;,
+    &quot;entropy&quot;: 7.293463,
+    &quot;sections&quot;: [],
+    &quot;imports&quot;: [],
+    &quot;readelf_section_exit&quot;: 0,
+    &quot;readelf_symbol_exit&quot;: 0
+  },
+  &quot;after&quot;: {
+    &quot;path&quot;: &quot;/home/user/p4-upx-test/unpack-result/unpacked.bin&quot;,
+    &quot;size&quot;: 15992,
+    &quot;sha256&quot;: &quot;9a3b8e1fc76c82b1d161d9b5295640c02117a35d3c87082b199dd7d0f90d3bec&quot;,
+    &quot;entropy&quot;: 1.53079,
+    &quot;sections&quot;: [
+      {
+        &quot;name&quot;: &quot;NULL&quot;,
+        &quot;type&quot;: &quot;0000000000000000&quot;,
+        &quot;address&quot;: &quot;000000&quot;,
+        &quot;offset&quot;: &quot;000000&quot;,
+        &quot;size_hex&quot;: &quot;00&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.note.gnu.property&quot;,
+        &quot;type&quot;: &quot;NOTE&quot;,
+        &quot;address&quot;: &quot;0000000000000350&quot;,
+        &quot;offset&quot;: &quot;000350&quot;,
+        &quot;size_hex&quot;: &quot;000020&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.note.gnu.build-id&quot;,
+        &quot;type&quot;: &quot;NOTE&quot;,
+        &quot;address&quot;: &quot;0000000000000370&quot;,
+        &quot;offset&quot;: &quot;000370&quot;,
+        &quot;size_hex&quot;: &quot;000024&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.interp&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000000394&quot;,
+        &quot;offset&quot;: &quot;000394&quot;,
+        &quot;size_hex&quot;: &quot;00001c&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.gnu.hash&quot;,
+        &quot;type&quot;: &quot;GNU_HASH&quot;,
+        &quot;address&quot;: &quot;00000000000003b0&quot;,
+        &quot;offset&quot;: &quot;0003b0&quot;,
+        &quot;size_hex&quot;: &quot;000024&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.dynsym&quot;,
+        &quot;type&quot;: &quot;DYNSYM&quot;,
+        &quot;address&quot;: &quot;00000000000003d8&quot;,
+        &quot;offset&quot;: &quot;0003d8&quot;,
+        &quot;size_hex&quot;: &quot;0000a8&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.dynstr&quot;,
+        &quot;type&quot;: &quot;STRTAB&quot;,
+        &quot;address&quot;: &quot;0000000000000480&quot;,
+        &quot;offset&quot;: &quot;000480&quot;,
+        &quot;size_hex&quot;: &quot;00008d&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.gnu.version&quot;,
+        &quot;type&quot;: &quot;VERSYM&quot;,
+        &quot;address&quot;: &quot;000000000000050e&quot;,
+        &quot;offset&quot;: &quot;00050e&quot;,
+        &quot;size_hex&quot;: &quot;00000e&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.gnu.version_r&quot;,
+        &quot;type&quot;: &quot;VERNEED&quot;,
+        &quot;address&quot;: &quot;0000000000000520&quot;,
+        &quot;offset&quot;: &quot;000520&quot;,
+        &quot;size_hex&quot;: &quot;000030&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.rela.dyn&quot;,
+        &quot;type&quot;: &quot;RELA&quot;,
+        &quot;address&quot;: &quot;0000000000000550&quot;,
+        &quot;offset&quot;: &quot;000550&quot;,
+        &quot;size_hex&quot;: &quot;0000c0&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.rela.plt&quot;,
+        &quot;type&quot;: &quot;RELA&quot;,
+        &quot;address&quot;: &quot;0000000000000610&quot;,
+        &quot;offset&quot;: &quot;000610&quot;,
+        &quot;size_hex&quot;: &quot;000018&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.init&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000001000&quot;,
+        &quot;offset&quot;: &quot;001000&quot;,
+        &quot;size_hex&quot;: &quot;000017&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.plt&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000001020&quot;,
+        &quot;offset&quot;: &quot;001020&quot;,
+        &quot;size_hex&quot;: &quot;000020&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.plt.got&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000001040&quot;,
+        &quot;offset&quot;: &quot;001040&quot;,
+        &quot;size_hex&quot;: &quot;000008&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.text&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000001050&quot;,
+        &quot;offset&quot;: &quot;001050&quot;,
+        &quot;size_hex&quot;: &quot;00017b&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.fini&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;00000000000011cc&quot;,
+        &quot;offset&quot;: &quot;0011cc&quot;,
+        &quot;size_hex&quot;: &quot;000009&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.rodata&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000002000&quot;,
+        &quot;offset&quot;: &quot;002000&quot;,
+        &quot;size_hex&quot;: &quot;000004&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.eh_frame_hdr&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000002004&quot;,
+        &quot;offset&quot;: &quot;002004&quot;,
+        &quot;size_hex&quot;: &quot;000034&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.eh_frame&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000002038&quot;,
+        &quot;offset&quot;: &quot;002038&quot;,
+        &quot;size_hex&quot;: &quot;0000cc&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.note.ABI-tag&quot;,
+        &quot;type&quot;: &quot;NOTE&quot;,
+        &quot;address&quot;: &quot;0000000000002104&quot;,
+        &quot;offset&quot;: &quot;002104&quot;,
+        &quot;size_hex&quot;: &quot;000020&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.init_array&quot;,
+        &quot;type&quot;: &quot;INIT_ARRAY&quot;,
+        &quot;address&quot;: &quot;0000000000003dd0&quot;,
+        &quot;offset&quot;: &quot;002dd0&quot;,
+        &quot;size_hex&quot;: &quot;000008&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.fini_array&quot;,
+        &quot;type&quot;: &quot;FINI_ARRAY&quot;,
+        &quot;address&quot;: &quot;0000000000003dd8&quot;,
+        &quot;offset&quot;: &quot;002dd8&quot;,
+        &quot;size_hex&quot;: &quot;000008&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.dynamic&quot;,
+        &quot;type&quot;: &quot;DYNAMIC&quot;,
+        &quot;address&quot;: &quot;0000000000003de0&quot;,
+        &quot;offset&quot;: &quot;002de0&quot;,
+        &quot;size_hex&quot;: &quot;0001e0&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.got&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000003fc0&quot;,
+        &quot;offset&quot;: &quot;002fc0&quot;,
+        &quot;size_hex&quot;: &quot;000028&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.got.plt&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000003fe8&quot;,
+        &quot;offset&quot;: &quot;002fe8&quot;,
+        &quot;size_hex&quot;: &quot;000020&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.data&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000004008&quot;,
+        &quot;offset&quot;: &quot;003008&quot;,
+        &quot;size_hex&quot;: &quot;000010&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.bss&quot;,
+        &quot;type&quot;: &quot;NOBITS&quot;,
+        &quot;address&quot;: &quot;0000000000004018&quot;,
+        &quot;offset&quot;: &quot;003018&quot;,
+        &quot;size_hex&quot;: &quot;000008&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.comment&quot;,
+        &quot;type&quot;: &quot;PROGBITS&quot;,
+        &quot;address&quot;: &quot;0000000000000000&quot;,
+        &quot;offset&quot;: &quot;003018&quot;,
+        &quot;size_hex&quot;: &quot;00001f&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.symtab&quot;,
+        &quot;type&quot;: &quot;SYMTAB&quot;,
+        &quot;address&quot;: &quot;0000000000000000&quot;,
+        &quot;offset&quot;: &quot;003038&quot;,
+        &quot;size_hex&quot;: &quot;000378&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.strtab&quot;,
+        &quot;type&quot;: &quot;STRTAB&quot;,
+        &quot;address&quot;: &quot;0000000000000000&quot;,
+        &quot;offset&quot;: &quot;0033b0&quot;,
+        &quot;size_hex&quot;: &quot;0001e7&quot;
+      },
+      {
+        &quot;name&quot;: &quot;.shstrtab&quot;,
+        &quot;type&quot;: &quot;STRTAB&quot;,
+        &quot;address&quot;: &quot;0000000000000000&quot;,
+        &quot;offset&quot;: &quot;003597&quot;,
+        &quot;size_hex&quot;: &quot;00011a&quot;
+      }
+    ],
+    &quot;imports&quot;: [],
+    &quot;readelf_section_exit&quot;: 0,
+    &quot;readelf_symbol_exit&quot;: 0
+  },
+  &quot;changes&quot;: {
+    &quot;size_delta&quot;: 10056,
+    &quot;entropy_delta&quot;: -5.762673,
+    &quot;sections_added&quot;: [
+      &quot;.bss&quot;,
+      &quot;.comment&quot;,
+      &quot;.data&quot;,
+      &quot;.dynamic&quot;,
+      &quot;.dynstr&quot;,
+      &quot;.dynsym&quot;,
+      &quot;.eh_frame&quot;,
+      &quot;.eh_frame_hdr&quot;,
+      &quot;.fini&quot;,
+      &quot;.fini_array&quot;,
+      &quot;.gnu.hash&quot;,
+      &quot;.gnu.version&quot;,
+      &quot;.gnu.version_r&quot;,
+      &quot;.got&quot;,
+      &quot;.got.plt&quot;,
+      &quot;.init&quot;,
+      &quot;.init_array&quot;,
+      &quot;.interp&quot;,
+      &quot;.note.ABI-tag&quot;,
+      &quot;.note.gnu.build-id&quot;,
+      &quot;.note.gnu.property&quot;,
+      &quot;.plt&quot;,
+      &quot;.plt.got&quot;,
+      &quot;.rela.dyn&quot;,
+      &quot;.rela.plt&quot;,
+      &quot;.rodata&quot;,
+      &quot;.shstrtab&quot;,
+      &quot;.strtab&quot;,
+      &quot;.symtab&quot;,
+      &quot;.text&quot;,
+      &quot;NULL&quot;
+    ],
+    &quot;sections_removed&quot;: [],
+    &quot;imports_added&quot;: [],
+    &quot;imports_removed&quot;: []
+  }
+}</pre>
+</section>
+</body>
+</html>

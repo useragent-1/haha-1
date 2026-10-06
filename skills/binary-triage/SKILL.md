@@ -18,7 +18,7 @@ description: Evidence-backed triage and function-level analysis for ELF, PE, sha
 每次装载本技能，先执行统一开工动作，不复用上轮“已安装”假设：
 
 ```bash
-SESSION_ID="${AGENT_SESSION_ID:-agent-$(date -u +%Y-%m-%dT%H:%M:%SZ)}"
+SESSION_ID="${AGENT_SESSION_ID:[REDACTED:ent-]$(date -u +%Y-%m-%dT%H:%M:%SZ)}"
 tail -5 /home/user/MEMORY_UPDATE.md 2>/dev/null || true
 /home/user/ha-ha/scripts/session_memory.sh start "$SESSION_ID"
 cat /home/user/ENV_FINGERPRINT.md 2>/dev/null || true

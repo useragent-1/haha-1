@@ -21,7 +21,7 @@
 | envd 监听端口 | 默认端口 `49983`（由 `envd --help` 与连接信息共同确认） |
 | envd 身份 | root；cwd 为 `/`；exe 为 `/usr/bin/envd` |
 | envd token | 未发现 token 字段 |
-| 控制面连接 | `169.254.0.21:49983` ← `10.12.0.186:54512`、`10.12.0.104:51278/51268`、`10.12.0.78:60984`，均归属 PID 359 `envd` |
+| 控制面连接 | `169.254.0.21:49983` ← `[REDACTED:.186]:54512`、`[REDACTED:.104]:51278/51268`、`[REDACTED:0.78]:60984`，均归属 PID 359 `envd` |
 | 控制面端点 | 本轮直接确认上述 `10.12.0.x → 169.254.0.21:49983`；结合上一轮，`192.0.2.1:80` 为事件/操作 HTTP 端点候选 |
 | 出口代理地址 | 未发现显式 `HTTP_PROXY/HTTPS_PROXY`、配置文件代理地址或 NAT 重定向规则 |
 | 出口代理 CA | `/usr/local/share/ca-certificates/e2b-ca.crt`，595 字节 |
@@ -135,7 +135,7 @@ $ EP=$(pgrep -f "envd" | head -1); echo "envd pid=$EP"
 envd pid=359
 
 $ sudo cat /proc/$EP/cmdline 2>/dev/null | tr '\0' ' '; echo
-/usr/bin/envd 
+/usr/bin/envd
 
 $ sudo sh -c "cat /proc/$EP/environ 2>/dev/null | tr '\0' '\n' | sort" | head -60
 GOMEMLIMIT=512MiB
@@ -156,49 +156,49 @@ lrwxrwxrwx 1 root root 0 Jul 23 18:05 /proc/359/exe -> /usr/bin/envd
 
 ===== C. 控制通道进程归属 =====
 $ sudo ss -tnp 2>/dev/null | head -40
-State Recv-Q Send-Q         Local Address:Port          Peer Address:Port Process                                  
+State Recv-Q Send-Q         Local Address:Port          Peer Address:Port Process
 ESTAB 0      0                  127.0.0.1:58532            127.0.0.1:35105 users:(("jupyter-server",pid=437,fd=32))
-ESTAB 0      0                  127.0.0.1:60465            127.0.0.1:51746 users:(("python3.13",pid=475,fd=48))    
-ESTAB 0      0                  127.0.0.1:44461            127.0.0.1:43322 users:(("python3.13",pid=475,fd=45))    
-ESTAB 0      0                  127.0.0.1:53335            127.0.0.1:41682 users:(("python3.13",pid=475,fd=51))    
-ESTAB 0      0                  127.0.0.1:43501            127.0.0.1:52028 users:(("node",pid=490,fd=39))          
+ESTAB 0      0                  127.0.0.1:60465            127.0.0.1:51746 users:(("python3.13",pid=475,fd=48))
+ESTAB 0      0                  127.0.0.1:44461            127.0.0.1:43322 users:(("python3.13",pid=475,fd=45))
+ESTAB 0      0                  127.0.0.1:53335            127.0.0.1:41682 users:(("python3.13",pid=475,fd=51))
+ESTAB 0      0                  127.0.0.1:43501            127.0.0.1:52028 users:(("node",pid=490,fd=39))
 ESTAB 0      0                  127.0.0.1:60638            127.0.0.1:60493 users:(("jupyter-server",pid=437,fd=35))
 ESTAB 0      0                  127.0.0.1:51746            127.0.0.1:60465 users:(("jupyter-server",pid=437,fd=22))
 ESTAB 0      0                  127.0.0.1:39652            127.0.0.1:35769 users:(("jupyter-server",pid=437,fd=26))
-ESTAB 0      0                  127.0.0.1:43501            127.0.0.1:52020 users:(("node",pid=490,fd=35))          
-ESTAB 0      0                  127.0.0.1:41435            127.0.0.1:38654 users:(("node",pid=490,fd=40))          
-ESTAB 0      0                  127.0.0.1:35105            127.0.0.1:58532 users:(("node",pid=490,fd=37))          
-ESTAB 0      0                  127.0.0.1:35769            127.0.0.1:39652 users:(("python3.13",pid=475,fd=53))    
+ESTAB 0      0                  127.0.0.1:43501            127.0.0.1:52020 users:(("node",pid=490,fd=35))
+ESTAB 0      0                  127.0.0.1:41435            127.0.0.1:38654 users:(("node",pid=490,fd=40))
+ESTAB 0      0                  127.0.0.1:35105            127.0.0.1:58532 users:(("node",pid=490,fd=37))
+ESTAB 0      0                  127.0.0.1:35769            127.0.0.1:39652 users:(("python3.13",pid=475,fd=53))
 ESTAB 0      0                  127.0.0.1:52020            127.0.0.1:43501 users:(("jupyter-server",pid=437,fd=31))
 ESTAB 0      0                  127.0.0.1:43338            127.0.0.1:44461 users:(("jupyter-server",pid=437,fd=25))
-ESTAB 0      0                  127.0.0.1:60493            127.0.0.1:60638 users:(("node",pid=490,fd=38))          
+ESTAB 0      0                  127.0.0.1:60493            127.0.0.1:60638 users:(("node",pid=490,fd=38))
 ESTAB 0      0                  127.0.0.1:52028            127.0.0.1:43501 users:(("jupyter-server",pid=437,fd=37))
-ESTAB 0      0                  127.0.0.1:53335            127.0.0.1:41656 users:(("python3.13",pid=475,fd=17))    
+ESTAB 0      0                  127.0.0.1:53335            127.0.0.1:41656 users:(("python3.13",pid=475,fd=17))
 ESTAB 0      0                  127.0.0.1:38654            127.0.0.1:41435 users:(("jupyter-server",pid=437,fd=39))
 ESTAB 0      0                  127.0.0.1:41682            127.0.0.1:53335 users:(("jupyter-server",pid=437,fd=24))
-ESTAB 0      0                  127.0.0.1:41656            127.0.0.1:53335 users:(("python3.13",pid=475,fd=16))    
-ESTAB 0      0                  127.0.0.1:60465            127.0.0.1:51738 users:(("python3.13",pid=475,fd=46))    
+ESTAB 0      0                  127.0.0.1:41656            127.0.0.1:53335 users:(("python3.13",pid=475,fd=16))
+ESTAB 0      0                  127.0.0.1:60465            127.0.0.1:51738 users:(("python3.13",pid=475,fd=46))
 ESTAB 0      0                  127.0.0.1:51738            127.0.0.1:60465 users:(("jupyter-server",pid=437,fd=19))
-ESTAB 0      0                  127.0.0.1:35105            127.0.0.1:58542 users:(("node",pid=490,fd=36))          
+ESTAB 0      0                  127.0.0.1:35105            127.0.0.1:58542 users:(("node",pid=490,fd=36))
 ESTAB 0      0                  127.0.0.1:43322            127.0.0.1:44461 users:(("jupyter-server",pid=437,fd=18))
 ESTAB 0      0                  127.0.0.1:58542            127.0.0.1:35105 users:(("jupyter-server",pid=437,fd=33))
-ESTAB 0      0                  127.0.0.1:44461            127.0.0.1:43338 users:(("python3.13",pid=475,fd=52))    
+ESTAB 0      0                  127.0.0.1:44461            127.0.0.1:43338 users:(("python3.13",pid=475,fd=52))
 ESTAB 0      0                      [::1]:8888                 [::1]:35824 users:(("jupyter-server",pid=437,fd=29))
-ESTAB 0      0                      [::1]:35798                [::1]:8888  users:(("uvicorn",pid=463,fd=14))       
-ESTAB 0      738    [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.186]:54512 users:(("envd",pid=359,fd=10))          
+ESTAB 0      0                      [::1]:35798                [::1]:8888  users:(("uvicorn",pid=463,fd=14))
+ESTAB 0      738    [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.186]]:54512 users:(("envd",pid=359,fd=10))
 ESTAB 0      0                      [::1]:8888                 [::1]:35808 users:(("jupyter-server",pid=437,fd=16))
-ESTAB 0      0                      [::1]:8888                 [::1]:35798 users:(("jupyter-server",pid=437,fd=8)) 
-ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.104]:51278 users:(("envd",pid=359,fd=28))          
-ESTAB 0      0                      [::1]:35808                [::1]:8888  users:(("uvicorn",pid=463,fd=15))       
-ESTAB 0      0      [::ffff:169.254.0.21]:49983  [::ffff:10.12.0.78]:60984 users:(("envd",pid=359,fd=12))          
-ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.104]:51268 users:(("envd",pid=359,fd=14))          
-ESTAB 0      0                      [::1]:35824                [::1]:8888  users:(("uvicorn",pid=463,fd=16))       
+ESTAB 0      0                      [::1]:8888                 [::1]:35798 users:(("jupyter-server",pid=437,fd=8))
+ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.104]]:51278 users:(("envd",pid=359,fd=28))
+ESTAB 0      0                      [::1]:35808                [::1]:8888  users:(("uvicorn",pid=463,fd=15))
+ESTAB 0      0      [::ffff:169.254.0.21]:49983  [::ffff:[REDACTED:0.78]]:60984 users:(("envd",pid=359,fd=12))
+ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.104]]:51268 users:(("envd",pid=359,fd=14))
+ESTAB 0      0                      [::1]:35824                [::1]:8888  users:(("uvicorn",pid=463,fd=16))
 
 $ sudo ss -tnp state established 2>/dev/null | grep -E "10\.12\.|192\.0\.2\." | head -20
-0      738    [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.186]:54512 users:(("envd",pid=359,fd=10))          
-0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.104]:51278 users:(("envd",pid=359,fd=28))          
-0      0      [::ffff:169.254.0.21]:49983  [::ffff:10.12.0.78]:60984 users:(("envd",pid=359,fd=12))          
-0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.104]:51268 users:(("envd",pid=359,fd=14))          
+0      738    [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.186]]:54512 users:(("envd",pid=359,fd=10))
+0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.104]]:51278 users:(("envd",pid=359,fd=28))
+0      0      [::ffff:169.254.0.21]:49983  [::ffff:[REDACTED:0.78]]:60984 users:(("envd",pid=359,fd=12))
+0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.104]]:51268 users:(("envd",pid=359,fd=14))
 
 ===== D. 出口代理与 CA（重点） =====
 $ sudo find / -maxdepth 5 \( -iname "*egress*" -o -iname "*proxy*" \) -not -path "/proc/*" -not -path "/sys/*" 2>/dev/null | head -30
@@ -237,24 +237,24 @@ $ env | grep -i proxy; grep -ri proxy ~/.bashrc /etc/environment /etc/profile.d/
 
 $ sudo iptables -L -n -v 2>/dev/null | head -30; sudo iptables -t nat -L -n -v 2>/dev/null | head -30
 Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 Chain PREROUTING (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 ===== E. 挂载与文件系统 =====
 $ mount | grep -vE "^(proc|sys|dev|cgroup|tmpfs)" | head -25

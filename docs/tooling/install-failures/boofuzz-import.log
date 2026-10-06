@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import boofuzz
+  File "/usr/local/lib/python3.13/site-packages/boofuzz/__init__.py", line 7, in <module>
+    from .cli import main_helper
+  File "/usr/local/lib/python3.13/site-packages/boofuzz/cli.py", line 18, in <module>
+    from .utils.debugger_thread_simple import DebuggerThreadSimple
+  File "/usr/local/lib/python3.13/site-packages/boofuzz/utils/debugger_thread_simple.py", line 6, in <module>
+    resource.setrlimit(  # Equivalent to: ulimit -c unlimited
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        resource.RLIMIT_CORE, (resource.RLIM_INFINITY, resource.RLIM_INFINITY)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+ValueError: not allowed to raise maximum limit

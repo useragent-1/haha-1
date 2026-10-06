@@ -7,7 +7,12 @@
 
 | 触发关键词 | 技能 | 主文件 | 说明 |
 |---|---|---|---|
-| 逆向 / 破解 / 样本 / 二进制 / APK / PE / Mach-O / 固件 / 脱壳 / 混淆 / 协议 / PCAP / 漏洞 / 利用 / 恶意代码 / 补丁 | **reverse-flow** | `SKILL.md` | 全谱系逆向工程：静态+动态分析、脱壳、密码学识别、协议逆向、ROP/exploit、YARA、一键流水线 |
+| 动态 / 调试 / 追踪 / 动态脱壳 / 脱壳 / 内存 dump / 内存dump / dump / 行为分析 / 插桩 / hook / Frida / GDB / strace / ltrace | **dynamic-recon** | `skills/dynamic-recon/SKILL.md` | 授权动态分析：调试与崩溃回溯、系统/库调用追踪、Hook/插桩、反调试识别、内存 dump、符号执行、多架构模拟；“动态脱壳/内存 dump”优先于静态脱壳路由 |
+| 协议 / PCAP / pcap / 流量 / 会话重组 / beaconing / C2 心跳 | **protocol-re** | `skills/protocol-re/SKILL.md` | 离线会话重组、协议字段模板、明文/加密启发式和异常流量扫描 |
+| 前端 / JS / JavaScript / 端点发现 / endpoint / source map / sourcemap | **frontend-re** | `skills/frontend-re/SKILL.md` | API/WebSocket/域名发现、source map 恢复、格式化对照和位置-only 敏感信息扫描 |
+| 脱壳 / 混淆 / 加固 / UPX / 字符串加密 / unpack / deobfuscate | **unpack-deobfusc** | `skills/unpack-deobfusc/SKILL.md` | 壳识别、UPX 副本脱壳、字符串解密候选和脱壳前后差异；纯“脱壳”默认本技能，动态上下文转 dynamic-recon |
+| 报告 / HTML 报告 / 批量 / batch / 批量分析 / 汇总索引 | **report-batch** | `skills/report-batch/SKILL.md` | JSON/Markdown 单文件 HTML 合成与 auto_analyze 批量运行 |
+| 逆向 / 破解 / 样本 / 二进制 / APK / PE / Mach-O / 固件 / 漏洞 / 利用 / 恶意代码 / 补丁 | **reverse-flow** | `SKILL.md` | 全谱系静态逆向、密码学识别、ROP/exploit、YARA、一键流水线；专项关键词转交上述技能 |
 | 一键分析 / 快速分析 / auto analyze | reverse-flow（流水线） | `scripts/auto_analyze.py` | 单命令全自动分析：识别、哈希、熵、字符串、加密常量、加壳、结构解析、YARA |
 
 ## 待建技能（占位，欢迎填充）

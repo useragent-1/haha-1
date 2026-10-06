@@ -10,7 +10,7 @@
 2. `binutils`、`file`、`xxd`、`jq`、`ripgrep` 安装命令成功；`auto_analyze.py --help` 正常返回帮助。
 3. 环境为 Debian 13、Linux `6.1.158+`、用户 `user`（UID 1000），环境变量标识 `E2B_SANDBOX=true`。
 4. 网络接口地址为 `169.254.0.21/30`，默认网关 `169.254.0.22`；`events.e2b.local` 指向 `192.0.2.1`。
-5. `envd` 版本 `0.6.10`，默认端口 `49983`；当前两条 `10.12.0.124` 私网连接由 PID 359 `envd` 持有。
+5. `envd` 版本 `0.6.10`，默认端口 `49983`；当前两条 `[REDACTED:.124]` 私网连接由 PID 359 `envd` 持有。
 6. 8888 服务响应头为 `TornadoServer/6.5.7`，进程命令行显示 Jupyter Server 以 root 运行，`IdentityProvider.token` 字段存在且值已按凭据规则遮蔽。
 7. `192.0.2.1:80` 可达并返回 HTTP 404 JSON 操作路由错误；未进一步枚举操作。
 8. 出口 CA 为 `O=E2B, CN=E2B Proxy CA`；当前未发现显式 proxy 环境变量，iptables filter/NAT 表无自定义规则。
@@ -49,7 +49,7 @@ debconf: falling back to frontend: Teletype
 debconf: unable to initialize frontend: Teletype
 debconf: (This frontend requires a controlling tty.)
 debconf: falling back to frontend: Noninteractive
-(Reading database ... 
+(Reading database ...
 (Reading database ... 5%
 (Reading database ... 10%
 (Reading database ... 15%
@@ -111,27 +111,27 @@ options:
 --- A 身份 ---
 $ whoami; id; uname -a; cat /etc/os-release | head -3; cat /proc/1/cgroup
 user
-uid=1000(user) gid=1000(user) groups=1000(user),27(sudo),100(users)
+uid
 Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Fri Jul 17 14:31:34 UTC 2026 x86_64 GNU/Linux
-PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
-NAME="Debian GNU/Linux"
-VERSION_ID="13"
+PRETTY_NAME
+NAME
+VERSION_ID
 0::/init.scope
 
 --- B 环境变量 ---
 $ env | sort
-E2B_EVENTS_ADDRESS=http://192.0.2.1
-E2B_SANDBOX=true
-E2B_SANDBOX_ID=iq3bhk4ca1e3to3y8kzoe
-E2B_TEMPLATE_ID=nlhz8vlwyupq845jsdg9
-HOME=/home/user
-LOGNAME=user
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
-PWD=/home/user
-SHELL=/bin/bash
-SHLVL=2
-USER=user
-_=/usr/bin/env
+E2B_EVENTS_ADDRESS
+E2B_SANDBOX
+E2B_SANDBOX_ID
+E2B_TEMPLATE_ID
+HOME
+LOGNAME
+PATH
+PWD
+SHELL
+SHLVL
+USER
+_
 
 --- C 网络 ---
 $ cat /etc/hosts; cat /etc/resolv.conf; ip addr; ip route; ss -tlnp
@@ -147,47 +147,47 @@ nameserver 8.8.8.81: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UN
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host proto kernel_lo 
+    inet6 ::1/128 scope host proto kernel_lo
        valid_lft forever preferred_lft forever
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 02:fc:00:00:00:05 brd ff:ff:ff:ff:ff:ff
     inet 169.254.0.21/30 brd 169.254.0.23 scope global eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::fc:ff:fe00:5/64 scope link proto kernel_ll 
+    inet6 fe80::fc:ff:fe00:5/64 scope link proto kernel_ll
        valid_lft forever preferred_lft forever
-default via 169.254.0.22 dev eth0 
-169.254.0.20/30 dev eth0 proto kernel scope link src 169.254.0.21 
+default via 169.254.0.22 dev eth0
+169.254.0.20/30 dev eth0 proto kernel scope link src 169.254.0.21
 State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess
-LISTEN 0      100        127.0.0.1:35769      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:47945      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:34675      0.0.0.0:*          
-LISTEN 0      4096         0.0.0.0:111        0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:35769      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:47945      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:34675      0.0.0.0:*          
-LISTEN 0      128        127.0.0.1:8888       0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:8888       0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:44461      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:35105      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:39379      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:41435      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:43501      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:35105      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:44461      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:39379      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:41435      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:43501      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:60465      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:53335      0.0.0.0:*          
-LISTEN 0      5       169.254.0.21:60493      0.0.0.0:*          
-LISTEN 0      2048         0.0.0.0:49999      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:60465      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:60493      0.0.0.0:*          
-LISTEN 0      100        127.0.0.1:53335      0.0.0.0:*          
-LISTEN 0      4096            [::]:111           [::]:*          
-LISTEN 0      4096               *:22               *:*          
-LISTEN 0      128            [::1]:8888          [::]:*          
-LISTEN 0      4096               *:49983            *:*          
+LISTEN 0      100        127.0.0.1:35769      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:47945      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:34675      0.0.0.0:*
+LISTEN 0      4096         0.0.0.0:111        0.0.0.0:*
+LISTEN 0      5       169.254.0.21:35769      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:47945      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:34675      0.0.0.0:*
+LISTEN 0      128        127.0.0.1:8888       0.0.0.0:*
+LISTEN 0      5       169.254.0.21:8888       0.0.0.0:*
+LISTEN 0      100        127.0.0.1:44461      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:35105      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:39379      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:41435      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:43501      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:35105      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:44461      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:39379      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:41435      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:43501      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:60465      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:53335      0.0.0.0:*
+LISTEN 0      5       169.254.0.21:60493      0.0.0.0:*
+LISTEN 0      2048         0.0.0.0:49999      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:60465      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:60493      0.0.0.0:*
+LISTEN 0      100        127.0.0.1:53335      0.0.0.0:*
+LISTEN 0      4096            [::]:111           [::]:*
+LISTEN 0      4096               *:22               *:*
+LISTEN 0      128            [::1]:8888          [::]:*
+LISTEN 0      4096               *:49983            *:*
 
 --- D 进程与文件系统 ---
 $ ps aux; ls -la /; ls -la /home/user ~; ls -la /tmp
@@ -362,12 +362,12 @@ drwx------  3 root root    60 Jul 23 18:05 systemd-private-2bb79165136a4b63829d1
 --- A envd ---
 $ cat /etc/systemd/system/envd.service; envd --version; envd --help; ss -tnp | grep -E "10\\.|192\\.0\\.2\\."
 [Unit]
-Description=Env Daemon Service
+Description
 # Start as early as possible on cold boot: envd only needs journald's socket
 # and a writable rootfs; networking is configured by the kernel (ip=) before
 # userspace. Default dependencies would gate it on sysinit/basic.target
 # (~0.5s), and the previous After=multi-user.target on chrony-wait (~8s).
-DefaultDependencies=no
+DefaultDependencies
 # Order after /tmp is finalized so envd doesn't answer before it's safe to stage
 # files there: updateEnvd uploads an update binary to /tmp during early boot.
 # On our base images (Ubuntu/Debian) /tmp is a plain rootfs dir, not a tmpfs
@@ -376,20 +376,20 @@ DefaultDependencies=no
 # ordered After=local-fs.target, so gating envd on local-fs.target alone leaves
 # them unordered and the upload races the wipe (chmod/mv then fail ENOENT).
 # Ordering after systemd-tmpfiles-setup.service closes that race.
-After=systemd-journald.socket systemd-remount-fs.service local-fs.target systemd-tmpfiles-setup.service
-Wants=systemd-journald.socket
-Conflicts=shutdown.target
-Before=shutdown.target
+After
+Wants
+Conflicts
+Before
 # Disable rate limiting; retry forever
-StartLimitIntervalSec=0
+StartLimitIntervalSec
 
 [Service]
-Type=simple
-Restart=always
-User=root
-Group=root
-Environment=GOTRACEBACK=all
-LimitCORE=infinity
+Type
+Restart
+User
+Group
+Environment
+LimitCORE
 # Seed the tmpfs from the tar packed as the build's last guest step — after all
 # build steps, start_cmd, and ready_cmd, with update-ca-certificates run first
 # (one sequential read); fall back to copying the cert dir, then to regenerating.
@@ -406,25 +406,25 @@ LimitCORE=infinity
 # guaranteed present for the sandbox's routable lifetime. The only gap is guest
 # units that auto-start and egress over TLS before /init; that is accepted
 # (revisit if a template needs boot-time egress).
-ExecStartPre=/bin/sh -c 'mountpoint -q /etc/ssl/certs || { mkdir -p /run/e2b/certs && { tar -C /run/e2b/certs -xf /usr/local/share/e2b/ssl-certs.tar 2>/dev/null || cp -a /etc/ssl/certs/. /run/e2b/certs/ 2>/dev/null; }; mount --bind /run/e2b/certs /etc/ssl/certs; } && ([ -s /etc/ssl/certs/ca-certificates.crt ] || update-ca-certificates)'
-ExecStart=/usr/bin/envd
-Nice=-20
-IOSchedulingClass=realtime
-IOSchedulingPriority=4
-OOMPolicy=continue
-OOMScoreAdjust=-1000
-Environment="GOMEMLIMIT=512MiB"
+ExecStartPre
+ExecStart
+Nice
+IOSchedulingClass
+IOSchedulingPriority
+OOMPolicy
+OOMScoreAdjust
+Environment
 
-Delegate=yes
-MemoryMin=50M
-MemoryLow=100M
-CPUAccounting=yes
-CPUWeight=1000
-IOAccounting=yes
-IOWeight=10000
+Delegate
+MemoryMin
+MemoryLow
+CPUAccounting
+CPUWeight
+IOAccounting
+IOWeight
 
 [Install]
-WantedBy=multi-user.target0.6.10
+WantedBy
 Usage of envd:
   -cgroup-root string
     	cgroup root directory (default "/sys/fs/cgroup")
@@ -440,8 +440,8 @@ Usage of envd:
     	write envd logs to stdout
   -version
     	print envd version
-ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.124]:58782       
-ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.124]:57052       
+ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.124]]:58782
+ESTAB 0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.124]]:57052
 
 --- B 代码解释器 ---
 $ curl -sv --max-time 5 http://127.0.0.1:8888/ 2>&1 | head -30
@@ -452,7 +452,7 @@ $ curl -sv --max-time 5 http://127.0.0.1:8888/ 2>&1 | head -30
 > Host: 127.0.0.1:8888
 > User-Agent: curl/8.14.1
 > Accept: */*
-> 
+>
 * Request completely sent off
 < HTTP/1.1 200 OK
 < Server: TornadoServer/6.5.7
@@ -465,7 +465,7 @@ $ curl -sv --max-time 5 http://127.0.0.1:8888/ 2>&1 | head -30
 < Content-Length: 2784
 < Set-Cookie: [REDACTED]
 < Set-Cookie: [REDACTED]
-< 
+<
 { [2784 bytes data]
 * Connection #0 to host 127.0.0.1 left intact
 <!DOCTYPE HTML>
@@ -506,41 +506,41 @@ $ curl -sv --max-time 5 http://192.0.2.1/ 2>&1 | head -25
 > Host: 192.0.2.1
 > User-Agent: curl/8.14.1
 > Accept: */*
-> 
+>
 * Request completely sent off
 < HTTP/1.1 404 Not Found
 < Content-Type: application/json; charset=utf-8
 < Date: Tue, 06 Oct 2026 02:17:57 GMT
 < Content-Length: 43
-< 
+<
 { [43 bytes data]
 * Connection #0 to host 192.0.2.1 left intact
 {"error":"no matching operation was found"}
 --- D 出口与证书 ---
 $ openssl x509 -in /usr/local/share/ca-certificates/e2b-ca.crt -noout -subject -issuer -dates 2>/dev/null; env | grep -i proxy; sudo iptables -L -n -v | head -30; sudo iptables -t nat -L -n -v | head -30
-subject=O=E2B, CN=E2B Proxy CA
-issuer=O=E2B, CN=E2B Proxy CA
-notBefore=Oct  5 12:33:17 2026 GMT
-notAfter=Oct  5 13:33:17 2027 GMT
+subject
+issuer
+notBefore
+notAfter
 Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 Chain PREROUTING (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain INPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)
- pkts bytes target     prot opt in     out     source               destination         
+ pkts bytes target     prot opt in     out     source               destination
 
 --- E 工作区协议 ---
 $ cat /tmp/arena-workspace/baseline.json; cat /tmp/arena-workspace/changes.json; unzip -l /tmp/arena-workspace/changes.zip | head -30
@@ -549,12 +549,12 @@ unzip:  cannot find or open /tmp/arena-workspace/changes.zip, /tmp/arena-workspa
 
 ================ 阶段3 权限与隔离边界 ================
 $ sudo -n true; echo "sudo_exit=$?"; sudo -n ls /root | head -20; cat /proc/1/cmdline | tr '\0' ' '; echo; sudo find / -maxdepth 4 -iname "*arena*" -not -path "/proc/*" -not -path "/sys/*" 2>/dev/null | head -20
-sudo_exit=0
+sudo_exit
 ijava-1.3.0.zip
 install.py
 java
 requirements.txt
-/sbin/init 
+/sbin/init
 /tmp/arena-workspace
 
 ================ 阶段4 公网出口验证 ================
@@ -566,8 +566,8 @@ raw.githubusercontent.com -> 301
 
 --- 阶段2 A 补充：平台私网对端进程归属 ---
 $ sudo ss -tnp state established | grep -E "10\\.|192\\.0\\.2\\."
-0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.124]:58782 users:(("envd",pid=359,fd=10))          
-0      0      [::ffff:169.254.0.21]:49983 [::ffff:10.12.0.124]:38788 users:(("envd",pid=359,fd=12))          
+0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.124]]:58782 users:(("envd",pid=359,fd=10))
+0      0      [::ffff:169.254.0.21]:49983 [::ffff:[REDACTED:.124]]:38788 users:(("envd",pid=359,fd=12))
 ```
 
 ### 阶段 6–7：记忆写回与技能沉淀——原始输出

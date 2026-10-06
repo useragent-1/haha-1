@@ -35,7 +35,7 @@ dns or mdns                        # DNS/DNS-SD traffic
 tls.handshake.type == 1            # TLS Client Hello (SNI extraction)
 data.data contains <hex_bytes>     # Binary payload search
 frame contains "<string>"          # ASCII search in raw packet
-ip.src == 192.168.1.100 && tcp.port == 443
+ip.src == [REDACTED:.100] && tcp.port == 443
 ```
 
 ## Binary protocol analysis methodology

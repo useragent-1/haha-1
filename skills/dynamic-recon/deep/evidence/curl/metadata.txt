@@ -1,0 +1,5 @@
+started_utc=2026-10-06T03:48:35Z
+target=/usr/bin/curl
+/usr/bin/curl: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=f7c40efb54a6d14e181145b6cfe0a43b888d04b4, for GNU/Linux 3.2.0, stripped
+d2136f430029a8750c6c3280effdca0383e24b1f606e32d63e3b4154409b1038  /usr/bin/curl
+Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Fri Jul 17 14:31:34 UTC 2026 x86_64 GNU/Linux

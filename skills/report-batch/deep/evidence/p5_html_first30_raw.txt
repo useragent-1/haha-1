@@ -1,0 +1,30 @@
+     1	<!doctype html>
+     2	<html lang="en">
+     3	<head>
+     4	<meta charset="utf-8">
+     5	<meta name="viewport" content="width=device-width,initial-scale=1">
+     6	<title>Agent Toolpack Validation</title>
+     7	<style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem;color:#17202a}h1,h2{color:#17365d}table{border-collapse:collapse;width:100%}th,td{border:1px solid #bbb;padding:.45rem;text-align:left}pre{background:#f5f7f9;border:1px solid #d9e0e6;padding:1rem;overflow:auto;white-space:pre-wrap}.high{color:#176b2c}.medium{color:#8a5900}.low{color:#a12424}.meta{color:#566}section{margin:2rem 0}</style>
+     8	</head>
+     9	<body>
+    10	<h1>Agent Toolpack Validation</h1>
+    11	<p class="meta">Generated UTC: 2026-10-06T03:54:45.462849+00:00</p>
+    12	<section>
+    13	<h2>Conclusions</h2>
+    14	<p>Confidence: <strong class="high">HIGH</strong></p>
+    15	<ul>
+    16	<li>Two harmless system binaries completed auto_analyze with exit code 0.</li>
+    17	<li>UPX unpack evidence records distinct packed and unpacked SHA-256 values.</li>
+    18	</ul>
+    19	</section>
+    20	<section>
+    21	<h2>Evidence table</h2>
+    22	<table>
+    23	<thead><tr><th>Path</th><th>Type</th><th>Bytes</th><th>SHA-256</th></tr></thead>
+    24	<tbody>
+    25	<tr><td>/home/user/p5-report-test/batch/index.json</td><td>JSON</td><td>633</td><td><code>12759f15b216423965ac5c44ea8bc819df67aa42a266d4e20e4c83da196328f0</code></td></tr>
+    26	<tr><td>/home/user/p5-report-test/batch/index.md</td><td>Markdown/Text</td><td>309</td><td><code>2b0a82a122d2891b3e50f7a7c8f63ab70e90f59de682c926b463410a5218ada5</code></td></tr>
+    27	<tr><td>/home/user/p4-upx-test/unpack-result/diff.json</td><td>JSON</td><td>6640</td><td><code>f888b5528f9236ea49a19e00a91cca0cc41ec00df0686def13cd704bc41570b2</code></td></tr>
+    28	</tbody>
+    29	</table>
+    30	</section>

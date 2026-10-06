@@ -1,0 +1,281 @@
+{
+  "schema": "unpack-deobfusc/diff-v1",
+  "before": {
+    "path": "/home/user/p4-upx-test/unpack-result/original.bin",
+    "size": 5936,
+    "sha256": "6faa27cf86b908dbe7d3c4ce84e7ef0d759c64ade7e6e2853f8ba1a17f574c79",
+    "entropy": 7.293463,
+    "sections": [],
+    "imports": [],
+    "readelf_section_exit": 0,
+    "readelf_symbol_exit": 0
+  },
+  "after": {
+    "path": "/home/user/p4-upx-test/unpack-result/unpacked.bin",
+    "size": 15992,
+    "sha256": "9a3b8e1fc76c82b1d161d9b5295640c02117a35d3c87082b199dd7d0f90d3bec",
+    "entropy": 1.53079,
+    "sections": [
+      {
+        "name": "NULL",
+        "type": "0000000000000000",
+        "address": "000000",
+        "offset": "000000",
+        "size_hex": "00"
+      },
+      {
+        "name": ".note.gnu.property",
+        "type": "NOTE",
+        "address": "0000000000000350",
+        "offset": "000350",
+        "size_hex": "000020"
+      },
+      {
+        "name": ".note.gnu.build-id",
+        "type": "NOTE",
+        "address": "0000000000000370",
+        "offset": "000370",
+        "size_hex": "000024"
+      },
+      {
+        "name": ".interp",
+        "type": "PROGBITS",
+        "address": "0000000000000394",
+        "offset": "000394",
+        "size_hex": "00001c"
+      },
+      {
+        "name": ".gnu.hash",
+        "type": "GNU_HASH",
+        "address": "00000000000003b0",
+        "offset": "0003b0",
+        "size_hex": "000024"
+      },
+      {
+        "name": ".dynsym",
+        "type": "DYNSYM",
+        "address": "00000000000003d8",
+        "offset": "0003d8",
+        "size_hex": "0000a8"
+      },
+      {
+        "name": ".dynstr",
+        "type": "STRTAB",
+        "address": "0000000000000480",
+        "offset": "000480",
+        "size_hex": "00008d"
+      },
+      {
+        "name": ".gnu.version",
+        "type": "VERSYM",
+        "address": "000000000000050e",
+        "offset": "00050e",
+        "size_hex": "00000e"
+      },
+      {
+        "name": ".gnu.version_r",
+        "type": "VERNEED",
+        "address": "0000000000000520",
+        "offset": "000520",
+        "size_hex": "000030"
+      },
+      {
+        "name": ".rela.dyn",
+        "type": "RELA",
+        "address": "0000000000000550",
+        "offset": "000550",
+        "size_hex": "0000c0"
+      },
+      {
+        "name": ".rela.plt",
+        "type": "RELA",
+        "address": "0000000000000610",
+        "offset": "000610",
+        "size_hex": "000018"
+      },
+      {
+        "name": ".init",
+        "type": "PROGBITS",
+        "address": "0000000000001000",
+        "offset": "001000",
+        "size_hex": "000017"
+      },
+      {
+        "name": ".plt",
+        "type": "PROGBITS",
+        "address": "0000000000001020",
+        "offset": "001020",
+        "size_hex": "000020"
+      },
+      {
+        "name": ".plt.got",
+        "type": "PROGBITS",
+        "address": "0000000000001040",
+        "offset": "001040",
+        "size_hex": "000008"
+      },
+      {
+        "name": ".text",
+        "type": "PROGBITS",
+        "address": "0000000000001050",
+        "offset": "001050",
+        "size_hex": "00017b"
+      },
+      {
+        "name": ".fini",
+        "type": "PROGBITS",
+        "address": "00000000000011cc",
+        "offset": "0011cc",
+        "size_hex": "000009"
+      },
+      {
+        "name": ".rodata",
+        "type": "PROGBITS",
+        "address": "0000000000002000",
+        "offset": "002000",
+        "size_hex": "000004"
+      },
+      {
+        "name": ".eh_frame_hdr",
+        "type": "PROGBITS",
+        "address": "0000000000002004",
+        "offset": "002004",
+        "size_hex": "000034"
+      },
+      {
+        "name": ".eh_frame",
+        "type": "PROGBITS",
+        "address": "0000000000002038",
+        "offset": "002038",
+        "size_hex": "0000cc"
+      },
+      {
+        "name": ".note.ABI-tag",
+        "type": "NOTE",
+        "address": "0000000000002104",
+        "offset": "002104",
+        "size_hex": "000020"
+      },
+      {
+        "name": ".init_array",
+        "type": "INIT_ARRAY",
+        "address": "0000000000003dd0",
+        "offset": "002dd0",
+        "size_hex": "000008"
+      },
+      {
+        "name": ".fini_array",
+        "type": "FINI_ARRAY",
+        "address": "0000000000003dd8",
+        "offset": "002dd8",
+        "size_hex": "000008"
+      },
+      {
+        "name": ".dynamic",
+        "type": "DYNAMIC",
+        "address": "0000000000003de0",
+        "offset": "002de0",
+        "size_hex": "0001e0"
+      },
+      {
+        "name": ".got",
+        "type": "PROGBITS",
+        "address": "0000000000003fc0",
+        "offset": "002fc0",
+        "size_hex": "000028"
+      },
+      {
+        "name": ".got.plt",
+        "type": "PROGBITS",
+        "address": "0000000000003fe8",
+        "offset": "002fe8",
+        "size_hex": "000020"
+      },
+      {
+        "name": ".data",
+        "type": "PROGBITS",
+        "address": "0000000000004008",
+        "offset": "003008",
+        "size_hex": "000010"
+      },
+      {
+        "name": ".bss",
+        "type": "NOBITS",
+        "address": "0000000000004018",
+        "offset": "003018",
+        "size_hex": "000008"
+      },
+      {
+        "name": ".comment",
+        "type": "PROGBITS",
+        "address": "0000000000000000",
+        "offset": "003018",
+        "size_hex": "00001f"
+      },
+      {
+        "name": ".symtab",
+        "type": "SYMTAB",
+        "address": "0000000000000000",
+        "offset": "003038",
+        "size_hex": "000378"
+      },
+      {
+        "name": ".strtab",
+        "type": "STRTAB",
+        "address": "0000000000000000",
+        "offset": "0033b0",
+        "size_hex": "0001e7"
+      },
+      {
+        "name": ".shstrtab",
+        "type": "STRTAB",
+        "address": "0000000000000000",
+        "offset": "003597",
+        "size_hex": "00011a"
+      }
+    ],
+    "imports": [],
+    "readelf_section_exit": 0,
+    "readelf_symbol_exit": 0
+  },
+  "changes": {
+    "size_delta": 10056,
+    "entropy_delta": -5.762673,
+    "sections_added": [
+      ".bss",
+      ".comment",
+      ".data",
+      ".dynamic",
+      ".dynstr",
+      ".dynsym",
+      ".eh_frame",
+      ".eh_frame_hdr",
+      ".fini",
+      ".fini_array",
+      ".gnu.hash",
+      ".gnu.version",
+      ".gnu.version_r",
+      ".got",
+      ".got.plt",
+      ".init",
+      ".init_array",
+      ".interp",
+      ".note.ABI-tag",
+      ".note.gnu.build-id",
+      ".note.gnu.property",
+      ".plt",
+      ".plt.got",
+      ".rela.dyn",
+      ".rela.plt",
+      ".rodata",
+      ".shstrtab",
+      ".strtab",
+      ".symtab",
+      ".text",
+      "NULL"
+    ],
+    "sections_removed": [],
+    "imports_added": [],
+    "imports_removed": []
+  }
+}

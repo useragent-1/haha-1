@@ -1,0 +1,44 @@
+{
+  "schema": "dynamic-recon/api-extractor-v1",
+  "root": "/home/user/dynamic-fixtures/web",
+  "files_scanned": 1,
+  "finding_count": 6,
+  "findings": [
+    {
+      "type": "url",
+      "value": "https://api.example.test/v1/items",
+      "file": "app.js",
+      "line": 1
+    },
+    {
+      "type": "domain",
+      "value": "api.example.test",
+      "file": "app.js",
+      "line": 1
+    },
+    {
+      "type": "websocket",
+      "value": "wss://stream.example.test/socket",
+      "file": "app.js",
+      "line": 2
+    },
+    {
+      "type": "domain",
+      "value": "stream.example.test",
+      "file": "app.js",
+      "line": 2
+    },
+    {
+      "type": "endpoint",
+      "value": "/api/session",
+      "file": "app.js",
+      "line": 3
+    },
+    {
+      "type": "authorization-pattern",
+      "value": "Bearer [REDACTED]",
+      "file": "app.js",
+      "line": 3
+    }
+  ]
+}

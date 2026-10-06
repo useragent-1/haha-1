@@ -1,0 +1,5 @@
+stage	exit_code
+baseline	0
+strace	0
+ltrace	0
+gdb	0

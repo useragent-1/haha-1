@@ -1,0 +1,20 @@
+{
+  "schema": "frontend-re/beautify-v1",
+  "before_sha256": "4aee180b4da90c754d608b57386e1626d47f0bb9e078d8460cdad6c27a841219",
+  "after_sha256": "cdcfb8d7b3e3bdf8ce673b2fc79e02a7d50574ae66ec3a3cfe3365a0c24feed5",
+  "before_lines": 2,
+  "after_lines": 7,
+  "max_line_length": 314,
+  "long_lines_over_1000": 0,
+  "indicators": [
+    {
+      "type": "eval",
+      "count": 1
+    },
+    {
+      "type": "hex-escapes",
+      "count": 1
+    }
+  ],
+  "semantic_notice": "Formatting is lexical and not proof of semantic equivalence; inspect the diff."
+}

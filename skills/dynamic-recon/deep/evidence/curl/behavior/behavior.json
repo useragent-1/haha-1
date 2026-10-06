@@ -1,0 +1,23 @@
+{
+  "schema": "dynamic-recon/behavior-v1",
+  "sources": {
+    "strace": "/home/user/p1-curl-triage/strace.log",
+    "ltrace": "/home/user/p1-curl-triage/ltrace.log"
+  },
+  "processes": [
+    {
+      "pid": 2016,
+      "path": "/usr/bin/curl"
+    }
+  ],
+  "process_edges": [],
+  "file_writes": [],
+  "network_connections": [
+    {
+      "pid": 2016,
+      "endpoint": "sun_path=\"/var/run/nscd/socket\""
+    }
+  ],
+  "persistence_indicators": [],
+  "environment_changes": []
+}

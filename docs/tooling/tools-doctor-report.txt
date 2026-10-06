@@ -1,0 +1,165 @@
+PASS	逆向与动态	radare2	6.2.4	/usr/bin/r2
+PASS	逆向与动态	gdb	16.3-1	/usr/bin/gdb
+PASS	逆向与动态	lldb	1:19.0-63	/usr/bin/lldb
+PASS	逆向与动态	binutils	2.44-3	/usr/bin/readelf
+PASS	逆向与动态	gawk	1:5.2.1-2+b1	/usr/bin/gawk
+PASS	逆向与动态	patchelf	0.18.0-1.4	/usr/bin/patchelf
+PASS	逆向与动态	strace	6.13+ds-1	/usr/bin/strace
+PASS	逆向与动态	ltrace	0.7.91~git20230705.8eabf68-4+b1	/usr/bin/ltrace
+PASS	逆向与动态	qemu-user-static	1:10.0.13+ds-0+deb13u1	/usr/bin/qemu-x86_64-static
+PASS	逆向与动态	build-essential	4:14.2.0-1	/usr/bin/gcc
+PASS	逆向与动态	cmake	3.31.6-2	/usr/bin/cmake
+PASS	逆向与动态	golang-go	2:1.24~2	/usr/bin/go
+PASS	逆向与动态	rustc	1.85.1+dfsg1-1+deb13u1	/usr/bin/rustc
+PASS	逆向与动态	cargo	1.85.1+dfsg1-1+deb13u1	/usr/bin/cargo
+PASS	逆向与动态	python3-dev	Usage: /usr/local/bin/python3-config --prefix/--exec-prefix/--includes/--libs/--cflags/--ldflags/--e	/usr/local/bin/python3-config
+PASS	逆向与动态	python3-venv	source	/usr/lib/python3.13/venv/__init__.py
+PASS	逆向与动态	angr	10.0.1.post1	import ok
+PASS	逆向与动态	pwntools	4.15.0	import ok
+PASS	逆向与动态	lief	1.0.0	import ok
+PASS	逆向与动态	pefile	2024.8.26	import ok
+PASS	逆向与动态	pyelftools	0.33	import ok
+PASS	逆向与动态	macholib	1.16.4	import ok
+PASS	逆向与动态	capstone	5.0.9	import ok
+PASS	逆向与动态	unicorn	2.1.2	import ok
+PASS	逆向与动态	keystone-engine	0.9.2	import ok
+PASS	逆向与动态	ropper	1.13.13	import ok
+PASS	逆向与动态	ROPgadget	7.7	import ok
+PASS	逆向与动态	z3-solver	5.1.0.0	import ok
+PASS	逆向与动态	miasm	0.1.5	import ok
+PASS	逆向与动态	qiling	1.4.6	import ok
+PASS	逆向与动态	flare-capa	9.4.0	import ok
+PASS	逆向与动态	r2pipe	1.9.8	import ok
+PASS	逆向与动态	frida-tools	14.11.0	import ok
+PASS	逆向与动态	objection	1.12.5	import ok
+PASS	逆向与动态	yara-x	1.21.0	import ok
+PASS	逆向与动态	speakeasy	1.5.11	/opt/security-tools/venvs/speakeasy/bin/python
+PASS	逆向与动态	FLOSS	3.1.1	/usr/local/bin/floss
+PASS	逆向与动态	YARA	4.5.2-1	/usr/bin/yara
+PASS	漏洞与POC	pocsuite3	[01;33m	/usr/local/bin/pocsuite
+FAIL	漏洞与POC	boofuzz	0.4.2	ValueError: not allowed to raise maximum limit
+PASS	漏洞与POC	hypothesis	6.168.5	import ok
+PASS	漏洞与POC	afl++	4.21c-5	/usr/bin/afl-fuzz
+PASS	漏洞与POC	radamsa	Radamsa 0.8a	/usr/local/bin/radamsa
+PASS	网络与协议	nmap	7.95+dfsg-3	/usr/bin/nmap
+PASS	网络与协议	masscan	2:1.3.2+ds1-2	/usr/bin/masscan
+PASS	网络与协议	tcpdump	4.99.5-2	/usr/bin/tcpdump
+PASS	网络与协议	tshark	4.4.19-0+deb13u1	/usr/bin/tshark
+PASS	网络与协议	zeek-client	1.5.0	/usr/local/bin/zeek-client
+PASS	网络与协议	suricata	1:7.0.10-1+deb13u4	/usr/bin/suricata
+PASS	网络与协议	hping3	source	/usr/sbin/hping3
+PASS	网络与协议	netcat-openbsd	/usr/bin/nc: invalid option -- '-'	/usr/bin/nc
+PASS	网络与协议	socat	1.8.0.3-1	/usr/bin/socat
+PASS	网络与协议	dnsutils	1:9.20.29-1~deb13u1	/usr/bin/dig
+PASS	网络与协议	ethtool	source	/usr/sbin/ethtool
+PASS	网络与协议	arp-scan	source	/usr/sbin/arp-scan
+PASS	网络与协议	scapy	2.8.0	import ok
+PASS	网络与协议	mitmproxy	12.2.3	import ok
+PASS	网络与协议	impacket	0.13.1	import ok
+PASS	网络与协议	httpx	Usage: httpx [OPTIONS] URL	/usr/local/bin/httpx
+PASS	网络与协议	naabu	__	/usr/local/bin/naabu
+PASS	网络与协议	dnsx	_             __  __	/usr/local/bin/dnsx
+PASS	网络与协议	tlsx	_____ _    _____  __	/usr/local/bin/tlsx
+PASS	网络与协议	subfinder	[[34mINF[0m] Current Version: v2.16.0	/usr/local/bin/subfinder
+PASS	网络与协议	nuclei	[[34mINF[0m] Nuclei Engine Version: v3.11.1	/usr/local/bin/nuclei
+PASS	网络与协议	katana	__        __	/usr/local/bin/katana
+PASS	网络与协议	gau	gau version: 2.2.4	/usr/local/bin/gau
+PASS	网络与协议	waybackurls	flag provided but not defined: -version	/usr/local/bin/waybackurls
+PASS	网络与协议	dalfox	dalfox 3.2.3	/usr/local/bin/dalfox
+PASS	网络与协议	interactsh-client	_       __                       __       __	/usr/local/bin/interactsh-client
+PASS	网络与协议	amass	v5.1.1	/usr/local/bin/amass
+PASS	网络与协议	asnmap	[[34mINF[0m] Current Version: v1.1.1	/usr/local/bin/asnmap
+PASS	网络与协议	massdns	massdns	/usr/local/bin/massdns
+PASS	网络与协议	puredns	puredns version v2.1.1	/usr/local/bin/puredns
+PASS	网络与协议	unicornscan	已安装/版本未取到	/home/user/push-tmp/scripts/net/unicornscan
+PASS	Web与凭据	sqlmap	1.9.6-1	/usr/bin/sqlmap
+PASS	Web与凭据	nikto	git	/opt/security-tools/nikto/program/nikto.pl
+PASS	Web与凭据	ffuf	2.1.0-1+b9	/usr/bin/ffuf
+PASS	Web与凭据	feroxbuster	feroxbuster 2.13.1	/usr/local/bin/feroxbuster
+PASS	Web与凭据	gobuster	3.6.0-1+b10	/usr/bin/gobuster
+PASS	Web与凭据	wpscan	_______________________________________________________________	/usr/local/bin/wpscan
+PASS	Web与凭据	whatweb	0.5.5-1	/usr/bin/whatweb
+PASS	Web与凭据	theHarvester	git	/opt/security-tools/theHarvester/theHarvester/theHarvester.py
+PASS	Web与凭据	joomscan	git	/opt/security-tools/joomscan/joomscan.pl
+PASS	Web与凭据	droopescan	Traceback (most recent call last):	/usr/local/bin/droopescan
+PASS	Web与凭据	hydra	9.5-3	/usr/bin/hydra
+PASS	Web与凭据	medusa	2.3-2	/usr/bin/medusa
+PASS	Web与凭据	ncrack	0.7+debian-6	/usr/bin/ncrack
+PASS	Web与凭据	cewl	6.2.1-1	/usr/bin/cewl
+PASS	Web与凭据	crunch	3.6-3	/usr/bin/crunch
+PASS	Web与凭据	smbclient	2:4.22.11+dfsg-0+deb13u1	/usr/bin/smbclient
+PASS	Web与凭据	rpcclient	2:4.22.11+dfsg-0+deb13u1	/usr/bin/rpcclient
+PASS	Web与凭据	ldapsearch	2.6.10+dfsg-1	/usr/bin/ldapsearch
+PASS	Web与凭据	krb5-user	/usr/bin/kinit: unrecognized option '--version'	/usr/bin/kinit
+PASS	Web与凭据	dnsrecon	1.2.0-3	/usr/bin/dnsrecon
+PASS	Web与凭据	fierce	1.6.0-1	/usr/bin/fierce
+PASS	Web与凭据	enum4linux	git	/opt/security-tools/enum4linux/enum4linux.pl
+PASS	Web与凭据	dirsearch	0.5.0	/usr/local/bin/dirsearch
+PASS	Web与凭据	wapiti	3.3.2	/usr/local/bin/wapiti
+PASS	Web与凭据	cmseek	git	/opt/security-tools/CMSeeK/cmseek.py
+PASS	Web与凭据	commix	0.1	/usr/local/bin/commix
+PASS	Web与凭据	h8mail	2.5.6	/usr/local/bin/h8mail
+PASS	Web与凭据	shhgit	flag provided but not defined: -version	/usr/local/bin/shhgit
+PASS	Web与凭据	detect-secrets	1.5.0	/usr/local/bin/detect-secrets
+PASS	Web与凭据	recon-ng	git	/opt/security-tools/recon-ng/recon-ng
+PASS	Web与凭据	sublist3r	1.0	/usr/local/bin/sublist3r
+PASS	Web与凭据	gitleaks	8.30.1	/usr/local/bin/gitleaks
+PASS	Web与凭据	trufflehog	trufflehog 3.98.0	/usr/local/bin/trufflehog
+PASS	Web与凭据	assetfinder	flag provided but not defined: -version	/usr/local/bin/assetfinder
+PASS	Web与凭据	findomain	findomain 10.0.1	/usr/local/bin/findomain
+PASS	Web与凭据	LaZagne	git	/opt/security-tools/LaZagne/Linux/laZagne.py
+PASS	Web与凭据	gitrob	git	/opt/security-tools/gitrob
+PASS	隧道与提权	ligolo-ng	time="2026-10-06T04:14:35Z" level=info msg="Loading configuration file ligolo-ng.yaml"	/usr/local/bin/ligolo-proxy
+PASS	隧道与提权	chisel	1.12.0	/usr/local/bin/chisel
+PASS	隧道与提权	frp	0.71.0	/usr/local/bin/frpc
+PASS	隧道与提权	gost	flag provided but not defined: -version	/usr/local/bin/gost
+PASS	隧道与提权	proxychains4	4.17-3	/usr/bin/proxychains4
+PASS	隧道与提权	linpeas	[1;32mEnumerate and search Privilege Escalation vectors.	/usr/local/bin/linpeas
+PASS	隧道与提权	pspy	git	/opt/security-tools/pspy
+PASS	固件/隐写/取证/IoT	binwalk	2.4.3+dfsg1-2+deb13u1	/usr/bin/binwalk
+PASS	固件/隐写/取证/IoT	aircrack-ng	1:1.7+git20230807.4bf83f1a-2	/usr/bin/aircrack-ng
+PASS	固件/隐写/取证/IoT	reaver	1.6.6-2+b1	/usr/bin/reaver
+PASS	固件/隐写/取证/IoT	steghide	0.5.1-15	/usr/bin/steghide
+PASS	固件/隐写/取证/IoT	exiftool	13.25+dfsg-1	/usr/bin/exiftool
+PASS	固件/隐写/取证/IoT	foremost	1.5.7-11+b2	/usr/bin/foremost
+PASS	固件/隐写/取证/IoT	testdisk	7.2-0.1	/usr/bin/testdisk
+PASS	固件/隐写/取证/IoT	sleuthkit	4.12.1+dfsg-3	/usr/bin/fls
+PASS	固件/隐写/取证/IoT	ssdeep	2.14.1+git20180629.57fcfff-3+b2	/usr/bin/ssdeep
+PASS	固件/隐写/取证/IoT	tlsh	5.0.0	import ok
+PASS	固件/隐写/取证/IoT	wifite2	git	/opt/security-tools/wifite2/Wifite.py
+PASS	固件/隐写/取证/IoT	volatility3	2.28.2	/usr/local/bin/vol
+FAIL	固件/隐写/取证/IoT	sievecarve	PyPI 无发行版	pip: No matching distribution found
+PASS	固件/隐写/取证/IoT	yara-python	4.5.4	import ok
+PASS	固件/隐写/取证/IoT	firmwalker	git	/opt/security-tools/firmwalker/firmwalker.sh
+PASS	云与容器安全	trivy	Version: 0.75.0	/usr/local/bin/trivy
+PASS	云与容器安全	syft	syft 1.54.0	/usr/local/bin/syft
+PASS	云与容器安全	grype	grype 0.120.0	/usr/local/bin/grype
+PASS	云与容器安全	kube-hunter	0.6.8	/usr/local/bin/kube-hunter
+PASS	云与容器安全	checkov	3.3.23	/usr/local/bin/checkov
+FAIL	威胁情报	cti-python-sdk	PyPI 无发行版	包名无法解析；未用无关同名 CTI 包替代
+PASS	威胁情报	stix2	3.0.2	import ok
+PASS	威胁情报	mitreattack-python	6.2.1	import ok
+PASS	便利工具	yq	3.4.3-2	/usr/bin/yq
+PASS	便利工具	jq	1.7.1-6+deb13u2	/usr/bin/jq
+PASS	便利工具	sqlite3	3.46.1-7+deb13u2	/usr/bin/sqlite3
+PASS	便利工具	postgresql-client	278	/usr/bin/psql
+PASS	便利工具	redis-tools	5:8.0.2-3+deb13u3	/usr/bin/redis-cli
+PASS	便利工具	tmux	3.5a-3	/usr/bin/tmux
+PASS	便利工具	pandoc	3.1.11.1+ds-2	/usr/bin/pandoc
+PASS	便利工具	graphviz	2.42.4-3	/usr/bin/dot
+PASS	便利工具	file	1:5.46-5	/usr/bin/file
+PASS	便利工具	lsof	4.99.4+dfsg-2	/usr/bin/lsof
+MISSING	B档仅记录	metasploit-framework	-	not installed by tier rule
+MISSING	B档仅记录	ghidra	-	not installed by tier rule
+MISSING	B档仅记录	ghidra-headless	-	not installed by tier rule
+MISSING	B档仅记录	rockyou	-	not installed by tier rule
+MISSING	B档仅记录	SecLists	-	not installed by tier rule
+MISSING	C档跳过	GUI工具	-	not installed by tier rule
+MISSING	C档跳过	Peach	-	not installed by tier rule
+MISSING	C档跳过	Cobalt Strike	-	not installed by tier rule
+MISSING	C档跳过	aircrack-ng真机实操	-	not installed by tier rule
+MISSING	C档跳过	Frida真机实操	-	not installed by tier rule
+MISSING	C档跳过	Sliver	-	not installed by tier rule
+MISSING	C档跳过	Havoc	-	not installed by tier rule
+MISSING	C档跳过	Docker内部运行	-	not installed by tier rule
+SUMMARY	TOTAL=164	PASS=148	FAIL=3	MISSING=13

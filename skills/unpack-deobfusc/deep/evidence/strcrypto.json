@@ -1,0 +1,25 @@
+{
+  "schema": "unpack-deobfusc/strcrypto-v1",
+  "binary": "/home/user/p4-upx-test/unpack-result/unpacked.bin",
+  "objdump_exit": 0,
+  "objdump_stderr": "",
+  "candidate_count": 2,
+  "candidates": [
+    {
+      "address": "0x0000000000001139",
+      "function": "demo_decode",
+      "xor_count": 1,
+      "loop_jumps": 2,
+      "calls": [],
+      "kind": "xor-loop-function",
+      "score": 4
+    },
+    {
+      "kind": "keyword",
+      "offset_hex": "0x3464",
+      "indicator": "decode",
+      "score": 2
+    }
+  ],
+  "notice": "Candidates are static clues, not proof of cryptography."
+}
