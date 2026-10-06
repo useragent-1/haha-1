@@ -66,6 +66,8 @@ if ! command -v massdns >/dev/null;then
 [[ $r == 0 ]] && record build massdns PASS 0 /usr/local/bin/massdns || record build massdns FAIL "$r" "$LOGDIR/massdns-build.log"
 
 TOOL_LOG_DIR="$LOGDIR" bash "$ROOT/tools/setup_full_fallbacks.sh"
+# 第三批（2026-10-06）：补齐 Ghidra/Windows/内存取证/情报/侦察取证 五大真缺口
+if [[ ${SETUP_ADVANCED:-1} == 1 ]];then TOOL_LOG_DIR="$LOGDIR" bash "$ROOT/tools/setup_advanced.sh";fi
 # B tier is intentionally record-only: metasploit-framework, Ghidra/headless, rockyou, SecLists.
 # C tier is intentionally skipped: GUI/commercial/hardware-only/long C2 builds/Docker-in-sandbox.
 record policy B-tier ONLY_RECORD 0 'see TOOLS.md for commands and size'

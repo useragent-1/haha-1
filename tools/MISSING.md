@@ -8,6 +8,14 @@
 > EvilClippy/ScareCrow（载荷生成）、CUpp（社工字典）、GTFOBins/LOLBAS/HackTricks（渗透知识库）。
 > 这批**待沙箱验证**（跑一次 `bash tools/setup_full.sh` 即生效）。
 > 另：SigmaHQ / PayloadsAllTheThings / SecLists 三个大库改为**可选安装**（`SETUP_BIGRULES=1`），默认跳过。
+>
+> **2026-10-06 第三批**（`tools/setup_advanced.sh`，主脚本 `SETUP_ADVANCED=1` 默认调用，**待沙箱验证**）：
+> - 补齐 **r2ghidra**（= Ghidra decompiler 后端，1/40 体积拿到反编译）、**diffoscope**
+> - 补齐 **mono/monodis/wine/de4dot**（.NET 与部分 Windows CLI 工具）
+> - 补齐 **guymager / ClamAV / osquery / Velociraptor**（内存取证与端点狩猎，此前完全空白）
+> - 补齐 **cve-bin-tool / stix2-validator / pymisp / otxv2 / ja3**（本地情报与 CVE）
+> - 补齐 **dnstwist / git-dumper / gowitness / uncover**（侦察取证）
+> - **决策记录**：metasploit、Ghidra 全量、C2 框架 **不安装**（沙箱装不上或无靶点/超时/商业授权），已用替代组合覆盖。
 
 本文件回答"哪些没装上、为什么、有什么替代、什么时候值得装"。已安装的全部见 `TOOLS.md`。
 
@@ -18,7 +26,7 @@
 | 工具 | 体积 | 未装原因 | 替代方案 | 什么时候值得装 |
 |---|---|---|---|---|
 | **metasploit-framework** | 1-2 GB | 每次新建沙箱都要重新下载 1-2GB，轮次成本过高 | `pocsuite3`（Python POC 框架，已装）+ `searchsploit` + 工具手工组合，覆盖约 80% 场景 | 有持久环境（自建 VPS / 本机）时；或平台提高额度时 |
-| **ghidra / ghidra-headless** | 1-2 GB（含 JDK） | 同上；且 GUI 版在沙箱无意义 | `radare2` + `angr`（符号执行）+ `capa`（能力分析）+ `r2pipe`/`lief` 组合 | 同上 |
+| **ghidra / ghidra-headless** | 1-2 GB（含 JDK） | 同上；且 GUI 版在沙箱无意义 | `radare2` + **`r2ghidra`**（第三批补装 = Ghidra decompiler 本体，`pdc` 出伪 C）+ `angr`（符号执行）+ `capa`（能力分析）+ `r2pipe`/`lief` | 需要图形化交互分析时（本地装） |
 | **SecLists**（大型安全词表） | >1 GB | 体积过大，多数场景不需要全量 | `crunch`（自造词表）+ `cewl`（爬取）+ `wordlists/rockyou`（**已补装**） | 已改为**可选安装**：`SETUP_BIGRULES=1 bash tools/setup_full.sh` |
 
 > **注**：`wordlists`（rockyou.txt，约 130MB）已从 B 档**提升到 A 档**并加入 `setup_full.sh` —— 它装在 `/usr/share/`，不占工作区与快照额度。
@@ -77,7 +85,8 @@
 **结论**：
 
 - **对样本逆向 / CTF / 授权渗透 / 协议分析 / Web 安全 / 内网横向：覆盖充分，可以开工**
-- **主要缺口**：metasploit（渗透框架）、ghidra（重型反编译）、SecLists（全量词表）—— 三者都是**体积问题，不是能力缺失**，在持久环境（本地 / VPS）补装即可
+- **主要缺口**：只剩 **metasploit**（渗透框架，沙箱无靶点，价值低）与 **GUI/Windows 动态调试链**（环境硬限制）——其余全部用替代组合覆盖
+- **已用替代方案补齐的**：Ghidra → `r2ghidra`；SecLists → `wordlists/rockyou` + `cewl` + `crunch`（全量库改 `SETUP_BIGRULES=1` 可选）；MSF payload 生成 → `ScareCrow`/`EvilClippy`；exploit 模块 → `searchsploit` + `pocsuite3`；钓鱼 → `GoPhish`
 - **无法补齐**：GUI、真机硬件、商业授权类（环境决定）
 
 ---

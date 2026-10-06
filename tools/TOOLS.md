@@ -29,6 +29,72 @@ bash tools/setup_full.sh && python3 tools/setup_tools_doctor.py
 
 ---
 
+## 第三批补装（2026-10-06 · `tools/setup_advanced.sh` · **待沙箱验证**）
+
+> 目标：补齐 Ghidra 全量 / Windows 工具链 / 内存取证 / 威胁情报 / 侦察取证 五块真缺口。
+> **metasploit、Ghidra 全量、C2 框架按决策不装**（沙箱装不上或用不上，见 `MISSING.md`）。
+
+### A. 反编译与二进制深度（用 1/40 体积拿到 Ghidra 的 decompiler）
+
+| 工具 | 用途 | 状态 |
+|---|---|---|
+| **r2ghidra** | **Ghidra 的反编译器后端**（`go install` 装到 /usr/local/bin）→ radare2 里 `pdc`/`pdg` 直接出伪 C | 待验证 |
+| **diffoscope** | 二进制深度差异对比（几百 MB 文件也能逐层 diff） | 待验证 |
+| **lief** / **r2pipe** | PE/ELF/Mach-O 统一解析 + Python 驱动 radare2 | 待验证 |
+
+### B. Windows 工具链替代（无 Windows，用 mono/wine 跑能跑的）
+
+| 工具 | 用途 | 状态 |
+|---|---|---|
+| **mono-devel / mono-utils** | .NET 运行时 + `monodis`（IL 反汇编） | 待验证 |
+| **wine** | 运行部分 Windows CLI 工具 | 待验证 |
+| **de4dot** | .NET 去混淆（Shroud/ConfuserEx 等），mono 下可跑 | 待验证 |
+
+### C. 内存取证与端点狩猎（此前完全空白）
+
+| 工具 | 用途 | 状态 |
+|---|---|---|
+| **guymager** | 内存/磁盘镜像采集（FTK Imager 的 Linux 等价） | 待验证 |
+| **ClamAV** | 反病毒引擎，验证样本是否被主流 AV 标记 | 待验证 |
+| **osquery** | 跨平台端点 SQL 查询 | 待验证 |
+| **Velociraptor** | 端点狩猎框架（源码） | 待验证 |
+
+### D. 威胁情报与 CVE（API 受限时的本地替代路径）
+
+| 工具 | 用途 | 状态 |
+|---|---|---|
+| **cve-bin-tool** | 本地 NVD 数据匹配——给二进制查已知漏洞 | 待验证 |
+| **stix2-validator** / **pymisp** | STIX 校验 / MISP API 客户端 | 待验证 |
+| **otxv2** | IOC 批量提取（URL/IP/哈希/邮箱） | 待验证 |
+| **ja3** | TLS 客户端指纹计算 | 待验证 |
+
+### E. 侦察取证补漏
+
+| 工具 | 用途 | 状态 |
+|---|---|---|
+| **dnstwist** | 域名投毒与错拼域名枚举 | 待验证 |
+| **git-dumper** | 从 GitHub 拉取泄露的 `.git` 仓库源码 | 待验证 |
+| **gowitness** | 网页截图取证 | 待验证 |
+| **uncover** | Shodan/Hunter 聚合搜索 | 待验证（需 API key） |
+
+### 可选（`SETUP_HEAVY=1`）
+
+`qemu-system-x86`（完整系统模拟，可起 Linux 靶机）、`bloaty`（函数级体积分析）、`plaso`（超时间线）。
+
+### 仍然装不了的（硬天花板，非工具问题）
+
+| 缺口 | 硬原因 |
+|---|---|
+| WinDbg / x64dbg / Procmon 等 Windows 动态调试 | 沙箱是 Linux（wine 只能覆盖少数 CLI 工具） |
+| IDA / Ghidra GUI / Burp 图形分析 | 沙箱无显示服务器 |
+| 真机固件 / IoT / USB 样本执行 | 无硬件 |
+| CobaltStrike / IDA Pro / Burp Pro | 商业授权 |
+
+---
+
+
+---
+
 
 | 类别 | 工具 | 一句话用途 | 状态 | 版本 | 沙箱限制/安装备注 | 自检 |
 |---|---|---|---|---|---|---|
