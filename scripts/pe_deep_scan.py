@@ -229,8 +229,13 @@ def analyze_pe(path: str, mitigations_only: bool = False) -> dict:
     # Packer detection
     packer_indicators = []
     for s in sections:
+        # Exact match (ignoring a leading dot) -- substring matching made every
+        # normal PE hit "DAta" through its ".rdata" section.
+        name_lower = s["name"].lower()
+        bare = name_lower.lstrip(".")
         for ps in PACKER_SECTIONS:
-            if ps.lower() in s["name"].lower():
+            ps_lower = ps.lower()
+            if name_lower == ps_lower or bare == ps_lower.lstrip("."):
                 packer_indicators.append(f"Section name: {s['name']} matches {ps}")
     for s in sections:
         if s["entropy"] > 7.5:

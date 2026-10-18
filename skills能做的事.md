@@ -1,6 +1,6 @@
 # Reverse Flow Skill — 能力清单
 
-> 基于 `reverse_flow_skill` v1.0.0 完整审计，涵盖 38 个 Python 脚本（17 个顶层 + 6 个任务套件）、6 个公共模块、19 篇参考文档、65 项测试。
+> 基于 `reverse_flow_skill` v1.0.0 完整审计，涵盖 38 个 Python 脚本（17 个顶层 + 6 个任务套件）、6 个公共模块、19 篇参考文档、76 项测试（含 PE/ELF/Mach-O/DEX 黄金回归）。
 
 ---
 
@@ -251,7 +251,7 @@ case/
 
 ## 七、测试体系
 
-### 测试体系（`tests/`）— 65 项全部通过
+### 测试体系（`tests/`）— 76 项全部通过
 
 | # | 测试 | 覆盖范围 |
 |---|------|----------|
@@ -267,7 +267,7 @@ case/
 | 10 | `test_crypto_constants` | 所有常量字节长度验证 |
 | 11+ | 集成/隔离测试 | 各专项解析器(PE/ELF/Mach-O/DEX/.NET/APK)与 auto_analyze 流水线阶段(risk_hint、YARA、Ghidra、ROP、混淆检测、调试器脚本)的集成冒烟、纯文本不崩溃、以及 `import` 失败隔离验证 |
 
-> 测试随每个集成模块同步扩充，从初始 10 项增长到 65 项，覆盖编译、帮助、坏输入、公共库、各模块集成与异常隔离；另含文档一致性与检测质量回归（`test_docs_consistency.py`、`test_auto_analyze_detection.py`、`test_rea_cli_contract.py`）。
+> 测试随每个集成模块同步扩充，从初始 10 项增长到 76 项，覆盖编译、帮助、坏输入、公共库、各模块集成与异常隔离；另含**黄金回归**（`test_parsers_golden.py`：逐字节构造 PE/ELF/Mach-O/DEX 并断言解析结果等于已知真相）、文档一致性（`test_docs_consistency.py`）、检测质量（`test_auto_analyze_detection.py`）、Rea 后端契约（`test_rea_cli_contract.py`）。
 
 ---
 

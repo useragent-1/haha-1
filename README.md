@@ -165,10 +165,18 @@ python scripts/tool_audit.py --profile native   # 输出末尾的 Optional MCP b
 ## 测试
 
 ```bash
-python -m pytest tests -q
+python -m pytest tests -q      # 76 项
 ```
 
-`tests/test_smoke.py` 对全部 CLI 脚本做：语法编译、`--help` 可执行性、公共模块导入、坏输入的优雅失败、依赖缺失时的跳过逻辑。CI 在 push/PR 上跑同一套。
+| 层次 | 文件 | 验证内容 |
+|---|---|---|
+| 冒烟 | `tests/test_smoke.py` | 全部 CLI 可编译、`--help` 可用、坏输入不崩、依赖缺失可跳过 |
+| **黄金回归** | `tests/test_parsers_golden.py` + `tests/sample_factory.py` | 逐字节构造 PE / ELF / Mach-O / DEX，断言解析器还原出**已知真相**（machine、节名、入口 RVA、头大小、哈希），并用 `struct` 反读证明 fixture 本身合规 |
+| 文档一致性 | `tests/test_docs_consistency.py` | 文档里每个路径存在、每个脚本被收录、每篇 reference 被索引、每个技能可路由 |
+| 检测质量 | `tests/test_auto_analyze_detection.py` | 误报双向锁死：`.idata$2` 不算反分析、计时 API 不计风险、普通代码不算栈串 |
+| 后端契约 | `tests/test_rea_cli_contract.py` | Rea 缺席自动 skip；在场则校验 provider 名与 `open:` 状态 |
+
+fixture 在运行时由 `tests/sample_factory.py` 生成，仓库里不存任何二进制样本。CI 在 push/PR 上跑同一套（Ubuntu/Windows × 3.10/3.13）。
 
 ## 目录结构
 
