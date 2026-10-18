@@ -38,7 +38,10 @@ def parse(text: str) -> dict:
 def markdown(data: dict) -> str:
     lines=['# Crash Trace','',f"- Signal: `{data['signal'] or 'not detected'}`",f"- Frames: {data['frame_count']}",'','## Key frames','','| # | Address | Function |','|---:|---|---|']
     for f in data['key_frames']:
-        lines.append(f"| {f['index']} | `{f['address'] or ''}` | `{f['function'].replace('|','\\|')}` |")
+        # Python 3.10: f-string expressions cannot contain a backslash, so the
+        # escaping has to happen before the literal is built.
+        safe_function = f['function'].replace('|', '\\|')
+        lines.append(f"| {f['index']} | `{f['address'] or ''}` | `{safe_function}` |")
     lines += ['','## Registers','']
     lines += [f"- `{k}` = `{v}`" for k,v in sorted(data['registers'].items())] or ['- Not found']
     lines += ['','## Key memory mappings','',f"Total mappings: {data['mapping_count']}",'','| Start | End | Perms | Offset | Path |','|---|---|---|---|---|']

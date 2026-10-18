@@ -486,6 +486,9 @@ def write_report(result: dict, path: str):
     hdr = result.get("header", {})
     if hdr:
         flags_list = hdr.get("flags_detail", [])
+        # Python 3.10 cannot nest same-quote strings inside an f-string
+        # expression (allowed from 3.12), so resolve this first.
+        flags_cell = ', '.join(flags_list) if flags_list else f"0x{hdr.get('flags', 0):X}"
         lines += [
             "## Mach-O Header",
             "",
@@ -494,7 +497,7 @@ def write_report(result: dict, path: str):
             f"| CPU | {hdr.get('cputype', '?')} |",
             f"| File type | {hdr.get('filetype', '?')} |",
             f"| Commands | {hdr.get('ncmds', 0)} ({hdr.get('sizeofcmds', 0):,} bytes) |",
-            f"| Flags | {', '.join(flags_list) if flags_list else f'0x{hdr.get("flags", 0):X}'} |",
+            f"| Flags | {flags_cell} |",
             "",
         ]
 
