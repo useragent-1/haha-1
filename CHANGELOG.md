@@ -27,6 +27,9 @@ All notable changes to this skill pack. Format loosely follows Keep a Changelog.
 - `auto_analyze.py` anti-analysis scan matched plain substrings, so `.idata$2` (contains `ida`) flagged every MSVC binary with 8 "indicators" and a MEDIUM rating. Matching is now word-boundary based; `whoami.exe` reports 0 instead of 8.
 - Timing APIs (`GetTickCount`, `QueryPerformanceCounter`, `rdtsc`) are imported by nearly every Windows program; they were moved out of the anti-analysis list into a separate `timing_api_imports` hint that never raises a risk level.
 - `shellcode_tools.find_obfuscated_strings` flagged stack strings on any binary with >10 `0xC6` bytes (`MOV r/m8,imm8`), i.e. every compiled PE. The heuristic now requires >=20 occurrences and >=1% density, and reports `low` confidence instead of `medium`.
+- `scripts/debugger_bridge.py` had **never been committed**: the `debugger_*.py` rule meant to ignore pipeline output also swallowed the wrapper itself, so a fresh clone was missing a documented script and three tests failed. Added an explicit negation.
+- `scripts/dynamic/crash_trace.py` and `scripts/macho_scan.py` used f-string forms that only compile on 3.12+ (backslash inside an expression, same-quote nesting), which broke the Python 3.10 leg of the CI matrix. Values are now computed before interpolation.
+- Windows CI runners keep a legacy code page, so every script printing Chinese aborted with `UnicodeEncodeError` when run as a subprocess. Test subprocesses now run with `PYTHONUTF8=1` / `PYTHONIOENCODING=utf-8` and decode output as UTF-8; the workflow sets the same variables at job level. The full matrix (Ubuntu/Windows × 3.10/3.13) is green.
 
 ## [0.9.0] — 2026-10-06
 
