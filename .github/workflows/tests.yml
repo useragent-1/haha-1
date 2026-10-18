@@ -14,6 +14,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.13"]
+    env:
+      # Scripts and reports are UTF-8 with Chinese text; the Windows runner
+      # otherwise uses a legacy code page and child processes die on print().
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
     steps:
       - uses: actions/checkout@v4
 

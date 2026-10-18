@@ -59,12 +59,26 @@ def _check_capstone() -> bool:
         return False
 
 
+def _child_env() -> dict:
+    """Run child CLIs in UTF-8 regardless of the host code page.
+
+    The scripts print Chinese; on a legacy console (the Windows CI runner keeps
+    a non-UTF-8 code page) the child aborts with UnicodeEncodeError and the
+    test blames the script instead of the environment.
+    """
+    env = dict(os.environ)
+    env["PYTHONUTF8"] = "1"
+    env["PYTHONIOENCODING"] = "utf-8"
+    return env
+
+
 def _run_py_compile(script: str) -> tuple[bool, str]:
     path = SCRIPTS_DIR / script
     try:
         result = subprocess.run(
             [sys.executable, "-m", "py_compile", str(path)],
-            capture_output=True, text=True, timeout=30,
+            capture_output=True, encoding="utf-8", errors="replace",
+            env=_child_env(), timeout=30,
         )
         return result.returncode == 0, result.stderr.strip()
     except subprocess.TimeoutExpired:
@@ -78,7 +92,8 @@ def _run_help(script: str) -> tuple[bool, str]:
     try:
         result = subprocess.run(
             [sys.executable, str(path), "--help"],
-            capture_output=True, text=True, timeout=30,
+            capture_output=True, encoding="utf-8", errors="replace",
+            env=_child_env(), timeout=30,
         )
         return result.returncode == 0, result.stdout[:200]
     except subprocess.TimeoutExpired:
@@ -101,8 +116,8 @@ def _run_bad_input(script: str) -> tuple[bool, str]:
     try:
         result = subprocess.run(
             [sys.executable, str(path), tmp_path],
-            capture_output=True, text=True, timeout=60,
-            cwd=str(SCRIPTS_DIR),
+            capture_output=True, encoding="utf-8", errors="replace",
+            env=_child_env(), cwd=str(SCRIPTS_DIR), timeout=60,
         )
         # non-zero exit is fine — it should NOT crash with a traceback
         crashed = "Traceback (most recent call last)" in result.stderr
@@ -168,8 +183,8 @@ def test_elf_deep_scan_truncated_elf_no_crash():
     try:
         result = subprocess.run(
             [sys.executable, str(script), tmp_path],
-            capture_output=True, text=True, timeout=60,
-            cwd=str(SCRIPTS_DIR),
+            capture_output=True, encoding="utf-8", errors="replace",
+            env=_child_env(), cwd=str(SCRIPTS_DIR), timeout=60,
         )
         assert result.returncode != 0, "expected non-zero exit on truncated ELF"
         assert "Traceback (most recent call last)" not in result.stderr, \
