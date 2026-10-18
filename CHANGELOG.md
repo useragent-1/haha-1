@@ -45,7 +45,7 @@ All notable changes to this skill pack. Format loosely follows Keep a Changelog.
 - Three failed installs switched to GitHub sources; `tools/MISSING.md` records uninstalled inventory and coverage self-assessment.
 - `.gitattributes` enforcing LF, so Windows checkouts cannot break the shell scripts.
 
-## [0.1.0] — 2026-07-09
+## [0.1.0] — 2026-10-06 (initial import)
 
 ### Added
 

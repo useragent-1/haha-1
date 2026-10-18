@@ -28,3 +28,4 @@
 | 时间(UTC) | 会话 | 任务 | 产出 | 决策/备注 | 下一步 |
 |---|---|---|---|---|---|
 | 2026-10-06 | 初始化 | 建立长期记忆机制 | 本文件 + SKILLS.md 路由表 | 记忆体挂在 GitHub 仓库 `haha-1`，作为跨会话唯一真源 | 用户指派新任务 |
+| 2026-10-18 | 仓库收口 v1.0.0 | 接入 Rea 后端 + 仓库工程化 | `references/rea-backend.md`、`tools/install_ghidra.ps1`、README 重写、CI 矩阵（4/4 绿）、MIT/SECURITY/CHANGELOG、19 项新测试、移除 324 文件 GPL 源码树；本机装 JDK 21 + Ghidra 12.1.4 | Rea 是壳、引擎自带；Windows Ghidra 仅 native x86/x64 PE；**已运行的 MCP server 不继承新环境变量，必须重启**；`debugger_*.py` 忽略规则曾吞掉 `scripts/debugger_bridge.py` | 用户手动改仓库描述 + 重启 IDE |

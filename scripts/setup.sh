@@ -3,7 +3,7 @@
 # 用法: bash scripts/setup.sh [安装目录]
 set -e
 REPO="https://github.com/useragent-1/haha-1.git"
-DEST="${1:-/home/user/ha-ha}"
+DEST="${1:-${SKILL_ROOT:-$HOME/ha-ha}}"
 
 if [ -d "$DEST/.git" ]; then
   echo "[1/4] updating $DEST"

@@ -22,8 +22,8 @@
 bash scripts/setup.sh    # clone + pip install + 自检，约 30 秒
 ```
 
-详见 `BOOTSTRAP.md`。安装后使用绝对路径调用脚本：
-`python /home/user/ha-ha/scripts/auto_analyze.py <sample> --out ./analysis/`
+详见 `BOOTSTRAP.md`。安装后使用绝对路径调用脚本（`SKILL_ROOT` 默认 `${HOME}/ha-ha`）：
+`python "$SKILL_ROOT/scripts/auto_analyze.py" <sample> --out ./analysis/`
 
 ## 资源索引
 
