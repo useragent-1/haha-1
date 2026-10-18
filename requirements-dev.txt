@@ -1,0 +1,5 @@
+# Development / CI dependencies.
+# Runtime scripts stay stdlib-only; capstone+unicorn are optional extras.
+-r requirements.txt
+
+pytest>=8.0

@@ -29,12 +29,14 @@ bash scripts/setup.sh    # clone + pip install + 自检，约 30 秒
 
 - 技能路由：`SKILLS.md`
 - 长期记忆：`MEMORY.md`
-- 方法论：`references/`（19 篇，按需读取）
-- 工具：`scripts/`（18 个 Python 脚本，可直接运行）
+- 方法论：`references/`（19 篇，按需读取；`rea-backend.md` 是后端接入协议）
+- 工具：`scripts/`（38 个 Python 脚本：顶层 17 个 + 6 个任务套件，可直接运行）
   - 一键流水线：`python scripts/auto_analyze.py <artifact> --out ./analysis/`
   - 加密扫描：`python scripts/find_crypto.py <artifact> --out ./crypto/`
   - PE 深度：`python scripts/pe_deep_scan.py <file> --out ./pe/`
   - APK 深度：`python scripts/apk_deep_scan.py <file> --out ./apk/`
+  - 工具体检：`python scripts/tool_audit.py --profile native --out ./tools.md`
+- 可选后端：Rea MCP（函数级伪代码 / 调用图 / 证据台账）→ 先读 `references/rea-backend.md`，探针为 `binary_overview`
 - 接口配置：`agents/openai.yaml`
 
 ## 触发方式（用户对 Agent 说）

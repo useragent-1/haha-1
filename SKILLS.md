@@ -19,9 +19,9 @@
 
 | 触发关键词 | 技能 | 计划主文件 | 说明 |
 |---|---|---|---|
-| 3D / three.js / 场景 / 城市 / 建模 | three-city | `skills/three-city/SKILL.md` | Web 3D 场景构建规范：坐标系换算、几何合并、贴图程序化生成、性能预算 |
-| 爬虫 / 采集 / 抓取 / 清洗 | scraper | `skills/scraper/SKILL.md` | 采集、清洗、落库的标准化流程 |
-| 文档 / 报告 / 说明 | doc-writer | `skills/doc-writer/SKILL.md` | 证据化文档写作规范 |
+| 3D / three.js / 场景 / 城市 / 建模 | three-city | `skills/<name>/SKILL.md` | Web 3D 场景构建规范：坐标系换算、几何合并、贴图程序化生成、性能预算 |
+| 爬虫 / 采集 / 抓取 / 清洗 | scraper | `skills/<name>/SKILL.md` | 采集、清洗、落库的标准化流程 |
+| 文档 / 报告 / 说明 | doc-writer | `skills/<name>/SKILL.md` | 证据化文档写作规范 |
 
 ## 装载协议（每个新会话开工时执行）
 

@@ -1115,7 +1115,8 @@ def test_auto_analyze_obfuscation_integration():
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
 
-    # >10 0xC6 bytes triggers the stack_string heuristic in find_obfuscated_strings
+    # >=20 0xC6 bytes at >=1% density triggers the stack_string heuristic in
+    # find_obfuscated_strings (a bare count alone flagged every ordinary PE)
     sample = b"\xc6" * 20 + b"shellcode_marker_here"
     with tempfile.TemporaryDirectory() as out_dir:
         with tempfile.NamedTemporaryFile(suffix=".bin", delete=False) as f:

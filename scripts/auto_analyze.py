@@ -18,6 +18,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import struct
 import sys
 from collections import Counter, defaultdict
@@ -75,8 +76,22 @@ ANTI_ANALYSIS_STRINGS = [
     "SbieDll", "SxIn", "SbieSvc",  # Sandboxie
     "Procmon", "Wireshark", "x64dbg", "windbg", "ollydbg",
     "ida", "Immunity", "frida", "ProcessHacker",
-    "GetTickCount", "QueryPerformanceCounter", "rdtsc",
 ]
+
+# Timing APIs are imported by practically every Windows program (whoami.exe
+# included), so they are reported separately as a hint instead of inflating
+# the anti-analysis risk rating.
+TIMING_API_STRINGS = ["GetTickCount", "GetTickCount64", "QueryPerformanceCounter", "rdtsc"]
+
+# Word-boundary matcher. Plain substring matching produced false positives on
+# ordinary PE section names (".idata$2" contains "ida"), which inflated the
+# medium-severity anti-analysis rating for every MSVC binary. Boundaries keep
+# real indicators ("IsDebuggerPresent", "SxIn.dll", standalone "ida") while
+# rejecting names that merely contain a short pattern.
+_ANTI_ANALYSIS_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(p) for p in ANTI_ANALYSIS_STRINGS) + r")\b",
+    re.IGNORECASE,
+)
 
 # ── Utility functions ─────────────────────────────────────────────────────────
 
@@ -278,13 +293,18 @@ def detect_packer(data: bytes, file_type: str) -> dict:
 # ── Anti-analysis string detection ────────────────────────────────────────────
 
 def scan_anti_analysis(strings: list[str]) -> list[str]:
-    found = []
-    for s in strings:
-        for pattern in ANTI_ANALYSIS_STRINGS:
-            if pattern.lower() in s.lower():
-                found.append(s)
-                break
-    return sorted(set(found))
+    return sorted({s for s in strings if _ANTI_ANALYSIS_RE.search(s)})
+
+
+_TIMING_API_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(p) for p in TIMING_API_STRINGS) + r")\b",
+    re.IGNORECASE,
+)
+
+
+def scan_timing_api(strings: list[str]) -> list[str]:
+    """Timing APIs used for anti-debug checks. Hint only, never a risk level."""
+    return sorted({s for s in strings if _TIMING_API_RE.search(s)})
 
 
 # ── Suspicious API detection ──────────────────────────────────────────────────
@@ -375,6 +395,7 @@ def analyze_artifact(path: str, out_dir: str, skip_yara: bool = False,
     crypto = scan_crypto_constants(data)
     packer = detect_packer(data, file_type["type"])
     anti_analysis = scan_anti_analysis(strings)
+    timing_api = scan_timing_api(strings)
     suspicious_api = scan_suspicious_api(strings)
 
     # ── Deep structural analysis (integrated sibling parsers) ────────────
@@ -643,6 +664,7 @@ def analyze_artifact(path: str, out_dir: str, skip_yara: bool = False,
         "crypto_indicators": crypto,
         "packer_detection": packer,
         "anti_analysis_strings": anti_analysis,
+        "timing_api_imports": timing_api,
         "suspicious_api_calls": {k: v[:5] for k, v in suspicious_api.items()},  # top 5 per category
         "risk_indicators": [],
         "deep_analysis": deep_analysis,
@@ -771,6 +793,16 @@ def write_markdown_report(result: dict, path: str):
         ]
         for a in result["anti_analysis_strings"][:20]:
             lines.append(f"- `{a}`")
+
+    if result.get("timing_api_imports"):
+        lines += [
+            "",
+            f"## Timing APIs ({len(result['timing_api_imports'])}) — hint only",
+            "",
+            "Present in most Windows programs; only meaningful together with other anti-debug evidence.",
+        ]
+        for t in result["timing_api_imports"][:10]:
+            lines.append(f"- `{t}`")
 
     lines += [
         "",

@@ -228,15 +228,21 @@ def find_obfuscated_strings(data: bytes) -> list[dict]:
     """Detect common string obfuscation patterns."""
     findings = []
 
-    # Pattern 1: Repeated XOR bytes → stack string construction
-    # Look for sequences of mov [esp+...], 0xXX patterns
-    # (simplified: look for high density of 0xC6 bytes = mov byte ptr)
+    # Pattern 1: stack-string construction.
+    # 0xC6 is MOV r/m8, imm8 -- emitted constantly by compilers when initialising
+    # structs and byte arrays, so an absolute count says nothing: a 96 KB PE holds
+    # ~150 of them. Require both a meaningful count and a density that ordinary
+    # code does not reach, otherwise every binary is flagged.
     c6_count = data.count(b"\xc6")
-    if c6_count > 10:
+    c6_density = c6_count / max(len(data), 1)
+    if c6_count >= 20 and c6_density >= 0.01:
         findings.append({
             "type": "stack_string",
-            "confidence": "medium",
-            "detail": f"Found {c6_count} potential stack-string instructions (0xC6 byte patterns)"
+            "confidence": "low",
+            "detail": (
+                f"{c6_count} MOV r/m8,imm8 bytes, density {c6_density:.2%} "
+                "— possible stack-string construction"
+            )
         })
 
     # Pattern 2: Long sequences of byte loads

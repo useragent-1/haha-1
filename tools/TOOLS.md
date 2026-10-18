@@ -171,7 +171,7 @@ bash tools/setup_full.sh && python3 tools/setup_tools_doctor.py
 | 网络与协议 | asnmap | 资产/协议 CLI | 可用 | [[34mINF[0m] Current Version: v1.1.1 | 仅版本自检；不向外网发起探测 | cmd:asnmap |
 | 网络与协议 | massdns | 资产/协议 CLI | 可用 | massdns | 仅版本自检；不向外网发起探测 | cmd:massdns |
 | 网络与协议 | puredns | 资产/协议 CLI | 可用 | puredns version v2.1.1 | 仅版本自检；不向外网发起探测 | cmd:puredns |
-| 网络与协议 | unicornscan | 异步扫描器源码 | 可用 | 已安装/版本未取到 | 仅源码；raw socket/外网扫描未运行 | path:/home/user/push-tmp/scripts/net/unicornscan |
+| 网络与协议 | unicornscan | 异步扫描器源码 | 可用 | 已安装/版本未取到 | 仅源码；raw socket/外网扫描未运行；**GPL，运行期由 `setup_full.sh` clone，不入库** | path:/home/user/push-tmp/scripts/net/unicornscan |
 | Web与凭据 | sqlmap | SQL 注入审计 | 可用 | 1.9.6-1 | 只对自造/授权目标；不使用真实凭据 | cmd:sqlmap |
 | Web与凭据 | nikto | Web 配置扫描 | 可用 | git  | 只对自造/授权目标；不使用真实凭据 | path:/opt/security-tools/nikto/program/nikto.pl |
 | Web与凭据 | ffuf | Web fuzz | 可用 | 2.1.0-1+b9 | 只对自造/授权目标；不使用真实凭据 | cmd:ffuf |

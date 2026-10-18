@@ -167,11 +167,29 @@ python <skill>/scripts/rop_finder.py <binary> --build-chain "execve(/bin/sh)" --
 ## Tool selection logic
 
 When choosing tools for a task, follow this priority:
-1. Use bundled scripts in `scripts/` first (no external dependencies needed)
-2. Use Python libraries (pefile, capstone, unicorn, lief) for programmatic analysis
-3. Use CLI tools (r2/rizin, objdump, readelf) for quick lookups
-4. Use GUI tools (Ghidra, IDA, x64dbg) for deep interactive analysis
-5. Suggest but don't require heavy tool installation
+1. Use bundled scripts in `scripts/` for triage, structural scans, signatures, ROP/shellcode, and reports (no external dependencies needed)
+2. If a `rea` MCP backend is available (see `references/rea-backend.md`), use it for function-level pseudo-code/assembly, xrefs and call graphs, Android method-level decompilation, and verifiable evidence IDs — it is the only path to engine-grade results
+3. Use Python libraries (pefile, capstone, unicorn, lief) for programmatic analysis
+4. Use CLI tools (r2/rizin, objdump, readelf) for quick lookups
+5. Use GUI tools (Ghidra, IDA, x64dbg) for deep interactive analysis
+6. Suggest but don't require heavy tool installation
+
+Never make the workflow depend on Rea. If the backend is absent, degrade per the matrix in `references/rea-backend.md` and say so in the report.
+
+## Optional backend: Rea MCP
+
+Rea is a deep-analysis MCP backend (multi-engine decompiler plus a canonical evidence ledger). It is **optional** and never a dependency.
+
+Probe, capability routing, degradation matrix, and evidence-ID rules live in `references/rea-backend.md`. Minimum contract:
+
+- **Probe first**: call `binary_overview` once. Bound target -> analyze. "No binary" error -> call `open_binary`. Tool missing -> degrade immediately. From a shell, `rea --version` and `rea capabilities` give the provider list and per-operation availability without starting a session.
+- **Bind once per case**: `open_binary(path="<absolute path>", provider_id="auto")`, then record the baseline (segments / procedure count / string count) as structural evidence in the artifact inventory.
+- **Provider reality**: candidates are `ghidra` / `hopper` / `ida`. On Windows only Ghidra is a practical PE decompiler, and it accepts native x86/x86-64 PE applications and DLLs only (no managed, hostile, sensitive, or mutable-path targets). macOS-only operations report `unsupported_host`; degrade instead of retrying.
+- **Route by question type**: need decompiled code, an addressable call graph, or machine-checkable evidence -> Rea. Need entropy/strings/signatures/ROP/YARA -> bundled scripts.
+- **Evidence IDs**: when Rea is available, cite its `ev_<64 hex>` identifiers verbatim. When absent, use `E1..En` with SHA-256 + command + offset. Never mix numbering styles silently.
+- **Scope honesty**: `verify_reconstruction` covers declared claims only. Undeclared behavior stays `unknown`, never "recovered".
+- **Engine vs shell**: `open_binary` works without an analysis engine (format / architecture / SHA-256 only). Every function-level call needs a provider; a missing engine returns `provider_unavailable` with per-provider rejections. Run `rea doctor` once, fix the reported gap (Windows: JDK 21 + Ghidra 12.1.x + `GHIDRA_INSTALL_DIR`), retry once — never loop on a missing engine.
+- **Degrade loudly**: Rea unavailable -> fall back to `ghidra_headless.py` / `r2` / `jadx` / `dotnet_analyze.py` and cap confidence at Medium in the report.
 
 ## Anti-reverse and obfuscation handling
 
@@ -257,6 +275,9 @@ Read only what is needed:
 - `references/anti-reverse.md`: anti-debug, anti-VM, packing, obfuscation, virtualization detection and bypass.
 - `references/network-re.md`: protocol recovery, PCAP analysis, state machine inference, encoding identification.
 - `references/malware-analysis.md`: triage workflow, persistence mechanisms, C2 patterns, anti-analysis techniques.
+- `references/go-reverse.md`, `references/rust-reverse.md`, `references/wasm-analysis.md`: language-specific recovery (pclntab/itab, Rust symbol demangling and async state machines, Wasm module structure).
+- `references/symbolic-execution.md`, `references/linux-anti-debug.md`: angr/Triton constraint solving, ptrace/RDTSC/hardware-breakpoint anti-debug detection.
+- `references/rea-backend.md`: optional Rea MCP backend — probe, capability routing, degradation matrix, and evidence-ID alignment. Read before using any `rea` tool.
 
 ## Scripts
 
@@ -266,16 +287,34 @@ Read only what is needed:
 - `scripts/find_crypto.py`: scan for cryptographic constants (AES, DES, SHA, MD5, CRC, etc.), high-entropy regions, and crypto API import patterns.
 - `scripts/pe_deep_scan.py`: deep PE structural analysis — sections, resources, relocations, TLS, debug info, certificates, version info, Rich header.
 - `scripts/apk_deep_scan.py`: deep APK analysis — manifest audit, permission mapping, native library extraction, certificate info, export components.
+- `scripts/elf_deep_scan.py`: ELF deep structure — program/section headers, dynamic section, symbols, RELRO/PIE/NX/canary mitigation flags, packer hints.
+- `scripts/macho_scan.py`: Mach-O — fat/universal slice map, load commands, dylibs, rpaths, entitlements, code-signature presence, encryption info.
+- `scripts/dex_analyze.py`: DEX structural parse — header, string/type/proto/field/method IDs, class defs, code items, referenced APIs.
+- `scripts/dotnet_analyze.py`: .NET assembly — CLR header, metadata streams (`#~`, `#Strings`, `#US`, `#Blob`, `#GUID`), assembly refs, type/method tables.
 
 ### Reverse engineering scripts
 - `scripts/shellcode_tools.py`: shellcode extraction from binaries, multi-arch disassembly (x86/x64/ARM), emulation via Unicorn, format-agnostic conversion, template-based generation.
 - `scripts/rop_finder.py`: ROP gadget search with regex filtering, ROP chain auto-building, bad character filtering, mitigation assessment.
+- `scripts/ghidra_headless.py`: Ghidra `analyzeHeadless` wrapper — `check` / `import` / `decompile <binary> <function>` / `export-cfuncs <binary>`; degrades with an install hint when Ghidra is absent.
+- `scripts/debugger_bridge.py`: generate runnable x64dbg-Automate scripts (anti-debug bypass, memory dump, breakpoint tracing, ESP-law unpacking) without driving x64dbg itself.
+
+### Task-suite scripts (subdirectories)
+
+Each subdirectory is a focused pipeline used by the matching skill in `skills/`; all are stdlib-only unless noted.
+
+- `scripts/common/`: shared helpers (`filetype`, `entropy`, `hashes`, `strings`, `crypto_constants`, `io_utils`).
+- `scripts/dynamic/`: `crash_trace.py` (crash backtrace parsing), `api_extractor.py` (import/API surface), `behavior_report.py` (behavior summary).
+- `scripts/frontend/`: `sourcemap_recover.py`, `endpoint_discovery.py`, `secret_scan.py`, `beautify_compare.py`.
+- `scripts/protocol/`: `pcap_rebuild.py` (session reassembly), `field_extract.py` (field templates), `anomaly_scan.py` (beaconing/plaintext heuristics).
+- `scripts/unpack/`: `dump_diff.py` (before/after compare), `strcrypto_find.py` (encrypted-string candidates).
+- `scripts/report/`: `make_html_report.py` (JSON/MD → single-file HTML), `batch_runner.py` (batch `auto_analyze`).
 
 ### Utility scripts
 - `scripts/report_from_triage.py`: convert one or more triage JSON files into an initial Markdown report.
-- `scripts/tool_audit.py`: detect locally available high-value reverse tools and recommend missing tools by profile.
+- `scripts/tool_audit.py`: detect locally available high-value reverse tools, probe optional MCP backends (Rea), and recommend missing tools by profile.
 - `scripts/create_case.py`: create a structured case workspace with report templates.
 - `scripts/yara_gen.py`: auto-generate YARA rules from unique strings, opcode patterns, and structural features.
+- `scripts/setup.sh`: clone/pull the repo, install `requirements.txt`, and smoke-check the three core scripts inside a sandbox.
 
 Use scripts with absolute paths. Example:
 

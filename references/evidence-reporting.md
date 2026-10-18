@@ -79,3 +79,20 @@
 
 ## Evidence table rules
 Use stable identifiers. Include offsets, function names, command outputs, hashes, log excerpts, screenshots, or traces. Keep raw logs in the case directory and summarize only the relevant lines in reports.
+
+### Identifier scheme (pick one per report, never mix silently)
+
+| Backend state | ID format | Required fields per row |
+|---|---|---|
+| Rea MCP available | `ev_<64 hex>` returned by the backend, cited verbatim | backend ID + procedure/address + observation |
+| Rea absent (scripts/CLI only) | `E1`, `E2`, ... sequential | SHA-256 of the artifact + exact command + offset/function/string |
+| Mixed (partially available) | prefix by source: `rea:ev_...` / `local:E3` | as above, plus a one-line note at the top of the report explaining which section came from which backend |
+
+Rules:
+
+- Never renumber, shorten, or invent a backend `ev_` identifier; it is a hash, not a label.
+- An `E#` row without SHA-256 + command is not evidence — move it to "Unknowns".
+- Report degraded mode explicitly: `Backend: local scripts only (Rea unavailable)` in the Summary block, and cap confidence at Medium.
+- `verify_reconstruction` passing covers declared claims only. State the claim list in the report; undeclared behavior remains `unknown`.
+
+See `rea-backend.md` for the probe/routing/degradation workflow.

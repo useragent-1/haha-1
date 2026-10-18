@@ -12,6 +12,7 @@
 | 我要查工具 | `tools/TOOLS.md`（工具总索引） |
 | 我要装工具 | `tools/setup_core.sh`（30 秒核心）/ `tools/setup_full.sh`（全量） |
 | 我要自检环境 | `tools/setup_tools_doctor.py` |
+| 我要函数级伪代码 / 调用图 / 可校验证据 | `references/rea-backend.md`（可选 Rea MCP 后端） |
 
 ## 二、目录结构
 
@@ -22,32 +23,40 @@
 ├── MEMORY.md          长期记忆（用户偏好 / 当前状态 / 进度日志）
 ├── BOOTSTRAP.md       工具链武装指南
 │
-├── skills/            技能包
+├── skills/            技能包（8 个）
 │   ├── sandbox-recon/       沙箱/容器环境侦察
 │   ├── desktop-app-recon/   桌面应用逆向（Electron/Tauri/PyInstaller）
 │   ├── binary-triage/       二进制分诊流水线
 │   ├── dynamic-recon/       动态分析（调试/追踪/脱壳）
 │   ├── protocol-re/         协议与流量分析
 │   ├── frontend-re/         前端/JS 逆向
+│   ├── report-batch/        批量分析与 HTML 报告
 │   └── unpack-deobfusc/     反混淆与脱壳
 │
 ├── references/        方法论 19 篇（按需读，别全读）
-├── scripts/           分析脚本 40+
+├── scripts/           分析脚本 38 个 Python（顶层 17 + 任务套件）
 │   ├── auto_analyze.py / pe_deep_scan.py / elf_deep_scan.py ...
-│   ├── dynamic/ protocol/ frontend/ unpack/ report/ net/
+│   ├── common/ dynamic/ frontend/ protocol/ unpack/ report/
 │   └── setup.sh
 │
 ├── tools/             工具库（2026-10-06 新增）
 │   ├── TOOLS.md              CLI 工具总索引（状态/版本/沙箱限制）
 │   ├── setup_core.sh         核心 25 件套（幂等，30 秒）
 │   ├── setup_full.sh         A 档全量（幂等）
+│   ├── install_ghidra.ps1    Windows：JDK 21 + Ghidra 12.1.x（Rea 引擎）
+│   ├── scripts/net/          运行期 clone 目标，不入库（第三方 GPL 源码）
 │   └── setup_tools_doctor.py 环境自检（PASS/FAIL/B档/SKIP）
 │
-└── docs/              知识库
-    ├── ARENA-PLATFORM-ARCHITECTURE.md   平台架构实证
-    ├── SANDBOX-RECON-MATRIX.md          沙箱侦察命令矩阵
-    ├── INDEX.md（本文件）
-    └── reports/                          运行报告归档
+├── docs/              知识库
+│   ├── ARENA-PLATFORM-ARCHITECTURE.md   平台架构实证
+│   ├── SANDBOX-RECON-MATRIX.md          沙箱侦察命令矩阵
+│   ├── INDEX.md（本文件）
+│   ├── agent-runs/                      历史 agent 运行归档
+│   ├── reports/                         运行报告归档
+│   └── tooling/                         工具链自检与安装日志归档
+│
+├── tests/             65 项测试：冒烟 + 文档一致性 + 检测质量 + Rea 契约
+└── .github/           CI：Ubuntu/Windows × Python 3.10/3.13
 ```
 
 ## 三、常用调用

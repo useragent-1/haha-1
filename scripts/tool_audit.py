@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -48,6 +49,42 @@ def check_module(module: str) -> bool:
         return False
 
 
+# Optional analysis backends exposed by the host (MCP), not by an executable.
+# Process-level probing cannot see tools injected into the agent session, so a
+# negative result is reported as "unknown" -- never as "missing".
+OPTIONAL_BACKENDS = [
+    {
+        "name": "Rea MCP",
+        "kind": "mcp",
+        "env": ["REA_MCP_URL", "REA_MCP_COMMAND"],
+        "commands": ["rea", "rea-mcp"],
+        "purpose": "deep analysis backend: multi-engine pseudo-code/assembly, xrefs, call graph, canonical evidence ledger (see references/rea-backend.md)",
+    },
+]
+
+
+def probe_optional_backends() -> list:
+    rows = []
+    for item in OPTIONAL_BACKENDS:
+        env_hits = [key for key in item.get("env", []) if os.environ.get(key)]
+        cmd_hits = [cmd for cmd in item.get("commands", []) if shutil.which(cmd)]
+        if cmd_hits:
+            status = "detected"
+        elif env_hits:
+            status = "env-hint"
+        else:
+            status = "unknown"
+        rows.append({
+            "name": item["name"],
+            "kind": item["kind"],
+            "status": status,
+            "found_env": env_hits,
+            "found_commands": cmd_hits,
+            "purpose": item["purpose"],
+        })
+    return rows
+
+
 def audit(profile: str = "auto") -> dict:
     rows = []
     selected = []
@@ -71,6 +108,7 @@ def audit(profile: str = "auto") -> dict:
         "total_checked": len(selected),
         "tools": sorted(selected, key=lambda x: (-int(x["installed"]), -x["stars"], x["name"].lower())),
         "recommended_missing": [r for r in sorted(selected, key=lambda x: -x["stars"]) if not r["installed"]][:10],
+        "optional_backends": probe_optional_backends(),
     }
 
 
@@ -93,6 +131,22 @@ def to_markdown(data: dict) -> str:
     lines += ["", "## Recommended missing tools", ""]
     for i, r in enumerate(data["recommended_missing"], 1):
         lines.append(f"{i}. **{r['name']}** ({r['stars']} stars): {r['purpose']} ? {r['repo']}")
+    lines += [
+        "",
+        "## Optional MCP backends",
+        "",
+        "| Status | Backend | Kind | Detected | Purpose |",
+        "|---|---|---|---|---|",
+    ]
+    for b in data.get("optional_backends", []):
+        found = ", ".join(b["found_commands"] + b["found_env"]) or "-"
+        lines.append(f"| {b['status']} | {b['name']} | {b['kind']} | {found} | {b['purpose']} |")
+    lines += [
+        "",
+        "`detected` = executable on PATH; `env-hint` = env var set; `unknown` = not visible from this process.",
+        "`unknown` does not mean unavailable: an MCP server injected by the host is invisible here.",
+        "Probe from the agent side by calling `binary_overview` once (see references/rea-backend.md).",
+    ]
     lines += ["", "## Next step", "Run artifact triage first, then install only the missing tools needed for the selected profile.", ""]
     return "\n".join(lines)
 

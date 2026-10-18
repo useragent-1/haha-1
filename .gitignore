@@ -30,3 +30,21 @@ sync-memory.mjs
 # local utility scripts (not part of skill pack)
 scan-leaks.mjs
 redact-doc.mjs
+
+# ---- test-run artifacts written next to the scripts ----
+# tests/test_smoke.py drives the real CLIs, which write their default output
+# into scripts/<module>/. Kept out of the repo so a test run never dirties git.
+scripts/*_scan/
+scripts/dotnet_analyze/
+scripts/auto_analysis/
+
+# ---- runtime clone targets (never vendored) ----
+# tools/setup_full.sh clones upstream sources here at install time. Those trees
+# are third-party code under their own licenses (e.g. unicornscan is GPL), so
+# they must not be committed into this MIT-licensed repository.
+tools/scripts/net/
+
+# python tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
