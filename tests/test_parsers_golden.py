@@ -102,6 +102,31 @@ def test_pe_parser_recovers_ground_truth(tmp_path):
     assert got["imports"] == [] and got["tls_callbacks"] == []
 
 
+def test_pe_imports_are_recovered(tmp_path):
+    """The import directory used to be read from the wrong optional-header offset."""
+    got = _scan(
+        "pe_deep_scan.py",
+        sf.build_pe64(with_imports=True),
+        "imports.exe",
+        "pe_scan.json",
+        tmp_path,
+    )
+    pairs = {(i["dll"], i["name"]) for i in got["imports"]}
+    assert pairs == {(sf.PE_IMPORT_DLL, name) for name in sf.PE_IMPORT_FUNCS}
+
+
+def test_pe_mitigations_come_from_dll_characteristics(tmp_path):
+    """ASLR/DEP/CFG are read at optional-header offset 70 (PE32 and PE32+ alike)."""
+    data = sf.build_pe64()
+    got = _scan("pe_deep_scan.py", data, "mitigs.exe", "pe_scan.json", tmp_path)
+
+    opt = struct.unpack_from("<I", data, 0x3C)[0] + 24
+    dll_chars = struct.unpack_from("<H", data, opt + 70)[0]
+    assert got["mitigations"]["aslr"] is bool(dll_chars & 0x40)
+    assert got["mitigations"]["dep"] is bool(dll_chars & 0x100)
+    assert got["mitigations"]["cfg"] is bool(dll_chars & 0x4000)
+
+
 def test_pe_packer_detection_ignores_standard_sections(tmp_path):
     """`.rdata` used to match the `DAta` packer marker as a substring."""
     got = _scan("pe_deep_scan.py", sf.build_pe64(), "clean.exe", "pe_scan.json", tmp_path)

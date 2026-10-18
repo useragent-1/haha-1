@@ -1,5 +1,7 @@
 # ENV_FINGERPRINT
 
+> **快照**：2026-10-06 ｜ **已过期维度**：包版本、路径、安装状态 ｜ **刷新方式**：重跑 `tools/setup_tools_doctor.py`，不要直接引用本文数值。
+
 > 网络安全攻防全栈 CLI 最终环境指纹。`/usr/local`、`/opt`、apt/pip 包可能不跨沙箱轮次持久化；必须用 `scripts/setup_core.sh` 或 `scripts/setup_full.sh` 重建并重新运行 doctor。
 
 ## 元数据

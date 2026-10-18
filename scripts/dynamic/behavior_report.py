@@ -2,7 +2,6 @@
 """Summarize process, filesystem, network, persistence and environment behavior from traces."""
 from __future__ import annotations
 import argparse, json, pathlib, re
-from collections import defaultdict
 
 PID=re.compile(r'^(?P<pid>\d+)\s+')
 EXEC=re.compile(r'execve\("(?P<path>[^"]+)"')

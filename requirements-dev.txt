@@ -3,3 +3,7 @@
 -r requirements.txt
 
 pytest>=8.0
+ruff>=0.6
+# Independent implementation used only to cross-check our own parsers
+# (tests/test_cross_validation.py). Its absence makes those tests skip.
+lief>=0.14

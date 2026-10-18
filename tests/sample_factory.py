@@ -24,8 +24,12 @@ PE_MACHINE = 0x8664
 PE_RDATA_MARKER = b"GOLDEN_RDATA_MARKER\x00"
 
 
-def build_pe64() -> bytes:
-    """PE32+ x86-64, 2 sections, no imports, one marker string in .rdata."""
+PE_IMPORT_DLL = "GOLDEN.dll"
+PE_IMPORT_FUNCS = ("FuncA", "FuncB")
+
+
+def build_pe64(with_imports: bool = False) -> bytes:
+    """PE32+ x86-64, 2 sections, optional single-DLL import table."""
     e_lfanew = 0x40
     size_optional = 0xF0
     headers_size = 0x200
@@ -73,7 +77,11 @@ def build_pe64() -> bytes:
     opt += struct.pack("<Q", 0x1000)         # heap commit
     opt += struct.pack("<I", 0)              # loader flags
     opt += struct.pack("<I", 16)             # number of RVA and sizes
-    opt += b"\x00" * (16 * 8)                # data directories (all zero)
+    dirs = bytearray(16 * 8)
+    if with_imports:
+        # IMAGE_DIRECTORY_ENTRY_IMPORT -> RVA 0x2000 (.rdata), 0x28 bytes
+        struct.pack_into("<II", dirs, 8, 0x2000, 0x28)
+    opt += bytes(dirs)
     assert len(opt) == size_optional, len(opt)
 
     def section(name: str, vsize: int, vaddr: int, raw_size: int, raw_ptr: int, chars: int) -> bytes:
@@ -94,7 +102,25 @@ def build_pe64() -> bytes:
     body = bytearray(headers_size)
     body[0:len(head)] = head
     body[0x200:0x400] = b"\x90" * 0x200                     # .text
-    body[0x400:0x400 + len(PE_RDATA_MARKER)] = PE_RDATA_MARKER  # .rdata
+
+    rdata = bytearray(0x200)
+    if with_imports:
+        # Layout inside .rdata (RVA 0x2000 == file 0x400):
+        #   0x00  IMAGE_IMPORT_DESCRIPTOR (ILT 0x2028, Name 0x2058, IAT 0x2040)
+        #   0x14  null descriptor
+        #   0x28  ILT: 0x2070, 0x2078, 0
+        #   0x40  IAT: 0x2070, 0x2078, 0
+        #   0x58  "GOLDEN.dll\0"
+        #   0x70  hint+name "FuncA", 0x78 hint+name "FuncB"
+        struct.pack_into("<IIIII", rdata, 0x00, 0x2028, 0, 0, 0x2058, 0x2040)
+        struct.pack_into("<QQQ", rdata, 0x28, 0x2070, 0x2078, 0)
+        struct.pack_into("<QQQ", rdata, 0x40, 0x2070, 0x2078, 0)
+        rdata[0x58:0x58 + len(PE_IMPORT_DLL) + 1] = PE_IMPORT_DLL.encode() + b"\x00"
+        rdata[0x72:0x78] = b"FuncA\x00"   # RVA 0x2070 + hint(2)
+        rdata[0x7A:0x80] = b"FuncB\x00"   # RVA 0x2078 + hint(2)
+    else:
+        rdata[0:len(PE_RDATA_MARKER)] = PE_RDATA_MARKER
+    body[0x400:0x600] = rdata
     return bytes(body)
 
 
@@ -221,7 +247,9 @@ def build_macho64() -> bytes:
         0,           # reserved
     )
     body = header + segment
-    return body.ljust(0x100, b"\x00")
+    # Pad to the declared file size: LIEF (and real loaders) warn "content
+    # corrupted" when a segment claims more bytes than the file carries.
+    return body.ljust(0x1000, b"\x00")
 
 
 def macho_expected() -> dict:

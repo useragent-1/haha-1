@@ -1,0 +1,13 @@
+target-version = "py310"
+line-length = 120
+
+[lint]
+# Deliberately narrow. The wider rule set reports ~130 findings across 38
+# analysis scripts that are exercised end-to-end but not unit-covered; adopting
+# it would mean a large refactor with no safety net. These two catch the things
+# that actually break: undefined names, unused imports, syntax errors.
+select = ["F", "E9"]
+
+[lint.per-file-ignores]
+# Test fixtures intentionally import helpers for side effects / readability.
+"tests/*" = ["F401"]

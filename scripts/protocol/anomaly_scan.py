@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Offline heuristic scan for periodic beaconing, abnormal lengths, and suspicious HTTP UAs."""
 from __future__ import annotations
-import argparse,collections,json,math,pathlib,re,statistics
+import argparse,collections,json,pathlib,re,statistics
 from scapy.all import PcapReader,IP,IPv6,TCP,UDP,Raw
 SUSPICIOUS=[re.compile(x,re.I) for x in (r'^curl/',r'^python-requests/',r'^wget/',r'powershell',r'bot\b',r'headless')]
 def key(p):

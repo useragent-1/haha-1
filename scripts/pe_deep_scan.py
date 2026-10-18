@@ -159,6 +159,12 @@ def analyze_pe(path: str, mitigations_only: bool = False) -> dict:
     magic = get_word(opt_header, 0)
     is_pe32plus = magic == 0x20B
 
+    # Data directories begin after the fixed portion: 112 bytes for PE32+,
+    # 96 for PE32. The previous constants (80/84 and 168/152) were off by a
+    # whole field, so imports were always empty and TLS was read from the
+    # middle of an unrelated directory on 64-bit images.
+    dir_base = 112 if is_pe32plus else 96
+
     subsys = get_word(opt_header, 68)
 
     # Entry point
@@ -166,7 +172,7 @@ def analyze_pe(path: str, mitigations_only: bool = False) -> dict:
 
     # DLL Characteristics
     dll_chars = 0
-    dll_chars_offset = 74 if is_pe32plus else 70
+    dll_chars_offset = 70  # same offset in PE32 and PE32+
     if size_opt_header > dll_chars_offset + 2:
         dll_chars = get_word(opt_header, dll_chars_offset)
 
@@ -209,14 +215,15 @@ def analyze_pe(path: str, mitigations_only: bool = False) -> dict:
     # Imports
     imports = []
     if not mitigations_only and size_opt_header > 0:
-        import_dir_rva = get_dword(opt_header, 80 if is_pe32plus else 76)
-        import_dir_size = get_dword(opt_header, 84 if is_pe32plus else 80)
+        import_dir_rva = get_dword(opt_header, dir_base + 8)
+        import_dir_size = get_dword(opt_header, dir_base + 12)
         if import_dir_rva and import_dir_size:
             imports = _parse_imports(data, sections, import_dir_rva, is_pe32plus)
 
-    # TLS callbacks
+    # TLS callbacks (data directory index 9)
     tls_callbacks = []
-    tls_rva = get_dword(opt_header, 168 if is_pe32plus else 152) if size_opt_header > (168 if is_pe32plus else 152) + 4 else 0
+    tls_dir_offset = dir_base + 9 * 8
+    tls_rva = get_dword(opt_header, tls_dir_offset) if size_opt_header > tls_dir_offset + 4 else 0
     if tls_rva:
         tls_callbacks = _parse_tls(data, sections, tls_rva, is_pe32plus)
 

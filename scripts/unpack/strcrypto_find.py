@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rank static candidates for string decode/decrypt routines; report offsets and call clues only."""
 from __future__ import annotations
-import argparse,collections,json,pathlib,re,subprocess
+import argparse,json,pathlib,re,subprocess
 KEYWORDS=(b'decrypt',b'decode',b'base64',b'xor',b'cipher',b'aes',b'rc4',b'rot13')
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('binary',type=pathlib.Path);ap.add_argument('-o','--output',type=pathlib.Path,required=True);ns=ap.parse_args();data=ns.binary.read_bytes();candidates=[]

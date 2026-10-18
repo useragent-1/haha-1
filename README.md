@@ -165,13 +165,15 @@ python scripts/tool_audit.py --profile native   # 输出末尾的 Optional MCP b
 ## 测试
 
 ```bash
-python -m pytest tests -q      # 76 项
+python -m ruff check scripts tests   # pyflakes + 语法
+python -m pytest tests -q            # 83 项
 ```
 
 | 层次 | 文件 | 验证内容 |
 |---|---|---|
 | 冒烟 | `tests/test_smoke.py` | 全部 CLI 可编译、`--help` 可用、坏输入不崩、依赖缺失可跳过 |
-| **黄金回归** | `tests/test_parsers_golden.py` + `tests/sample_factory.py` | 逐字节构造 PE / ELF / Mach-O / DEX，断言解析器还原出**已知真相**（machine、节名、入口 RVA、头大小、哈希），并用 `struct` 反读证明 fixture 本身合规 |
+| **黄金回归** | `tests/test_parsers_golden.py` + `tests/sample_factory.py` | 逐字节构造 PE / ELF / Mach-O / DEX，断言解析器还原出**已知真相**（machine、节名、入口 RVA、导入表、缓解位、哈希），并用 `struct` 反读证明 fixture 本身合规 |
+| **交叉验证** | `tests/test_cross_validation.py` | 用 LIEF（独立实现）比对 PE 节表/导入表/DllCharacteristics、ELF 头与节、Mach-O 头；真实系统 PE 也跑一遍。缺 LIEF 自动 skip |
 | 文档一致性 | `tests/test_docs_consistency.py` | 文档里每个路径存在、每个脚本被收录、每篇 reference 被索引、每个技能可路由 |
 | 检测质量 | `tests/test_auto_analyze_detection.py` | 误报双向锁死：`.idata$2` 不算反分析、计时 API 不计风险、普通代码不算栈串 |
 | 后端契约 | `tests/test_rea_cli_contract.py` | Rea 缺席自动 skip；在场则校验 provider 名与 `open:` 状态 |
@@ -212,7 +214,9 @@ reverse-flow/
 - `tools/TOOLS.md` 里的安装状态来自历史沙箱，换环境后必须重跑 `setup_tools_doctor.py` 刷新。
 - 部分 `skills/*/` 目录混有当时的运行产物（`.stdout` / `.log` / 中间 JSON），作为案例证据保留，不参与技能执行。
 - `tools/scripts/net/` 不随仓库分发（第三方 GPL 源码），离线环境需自行准备；`tools/TOOLS.md` 里的路径记录来自历史沙箱，仅作参考。
-- CI 目前只覆盖冒烟测试（脚本可编译、`--help` 可用、模块可导入），不覆盖真实样本上的分析正确性。
+- CI 覆盖三层：冒烟、黄金回归（合成最小镜像）、LIEF 交叉验证。仍不覆盖真实样本的全谱系（重定位、资源、TLS、.NET 元数据、APK 签名块、DEX 方法体）。
+- **没有覆盖率门槛**：脚本主要由 subprocess 驱动，`coverage` 追不到子进程，报出来的百分比会是假指标，所以宁可不设。
+- lint 只开 `F`（pyflakes）+ `E9`（语法）：38 个分析脚本的完整规则集有约 130 条风格告警，在缺乏单测时批量重构风险高于收益。
 
 ## 许可
 

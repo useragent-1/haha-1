@@ -2,7 +2,7 @@
 """Extract protocol fields from PCAP and emit a reusable parsing template."""
 from __future__ import annotations
 import argparse,json,pathlib,re
-from scapy.all import PcapReader,IP,IPv6,TCP,UDP,DNS,DNSQR,DNSRR,Raw
+from scapy.all import PcapReader,IP,IPv6,TCP,UDP,DNS,DNSQR,Raw
 AUTH=re.compile(r'(?im)^(authorization|proxy-authorization):\s*([^\r\n]+)')
 REQ=re.compile(r'^(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)\s+(\S+)\s+HTTP/',re.M)
 def redact_auth(v):

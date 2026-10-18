@@ -13,8 +13,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import json
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -576,8 +574,8 @@ def main() -> int:
         print(f"Target: {args.target}")
         print()
         print("Next steps:")
-        print(f"  1. Install x64dbg: https://github.com/x64dbg/x64dbg")
-        print(f"  2. Install x64dbg_automate: pip install x64dbg-automate")
+        print("  1. Install x64dbg: https://github.com/x64dbg/x64dbg")
+        print("  2. Install x64dbg_automate: pip install x64dbg-automate")
         print(f"  3. Run: python {out_path}")
         return 0
 
